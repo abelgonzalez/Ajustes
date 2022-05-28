@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block estilosPersonalizados %}
+    <link href="{{ STATIC_URL }}css/pages/lock.css" rel="stylesheet" type="text/css"
+          xmlns="http://www.w3.org/1999/html"/>
+{% endblock %}
+{% block extra %}
+    <li class="active">
+    <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:;">
+        Extras
+        <span class="selected"></span>
+    </a>
+{% endblock %}
+{% block nombre_pagina %}
+    Contacto
+{% endblock %}
+{% block contenido %}
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="row-fluid margin-bottom-20">
+                <div class="span6">
+                    <div class="space20"></div>
+                    <h3 class="form-section">Contacto</h3>
+
+                    <p>Esta aplicación web se desarrolló con el objetivo de brindar apoyo al personal docente a la hora
+                        de realizar ajustes en los planes de estudio. Cualquier sugerencia déjela en el formulario a
+                        continuación. </p>
+
+                    <div class="well">
+                        <h4>Dirección</h4>
+                        <address>
+                            <strong>Universidad de Matanzas Camilo Cienfuegos</strong><br>
+                            Carretera Vía Blanca Km 5 1/2<br>
+                            Matanzas, Cuba, CP 40500<br>
+                        </address>
+                        <address>
+                            <strong>Abel González Mondéjar</strong><br>
+                            <abbr title="Móvil">M:</abbr> (+53) 536-99860
+                            <a href="mailto:abel.gonzalez@infonet.umcc.cu">abel.gonzalez@infonet.umcc.cu</a>
+                        </address>
+                    </div>
+                </div>
+                <div class="span6">
+                    <div class="space20"></div>
+                    <!-- BEGIN FORM-->
+                    <form id="formulario" action="{% url 'contacto' %}" class="horizontal-form">
+                        {% csrf_token %}
+                        <h3 class="form-section">Formulario de sugerencias</h3>
+
+                        <div class="control-group">
+                            <label class="control-label">Nombre</label>
+
+                            <div class="controls">
+                                <input type="text" class="m-wrap span12"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Correo</label>
+
+                            <div class="controls">
+                                <input type="text" class="m-wrap span12">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Mensaje</label>
+
+                            <div class="controls">
+                                <textarea class="m-wrap span12" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn blue"><i class="icon-ok"></i> Enviar</button>
+                        <button type="button" class="btn">Cancelar</button>
+                    </form>
+                    <!-- END FORM-->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascriptPersonalizados %}
+    <script src="{{ STATIC_URL }}scripts/contact-us.js"></script>
+{% endblock %}
+{% block javascriptLoco %}
+    ContactUs.init();
+{% endblock %}
+
+<!-- END JAVASCRIPTS -->

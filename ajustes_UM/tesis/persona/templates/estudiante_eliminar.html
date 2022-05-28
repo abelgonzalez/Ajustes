@@ -1,0 +1,16 @@
+{% extends '_eliminar.html' %}
+{% block breadcrumbs %}
+    <li><a href="{% url 'persona:estudiante_listar' %}">Expedientes estudiantiles</a></li>
+    <li><a href="{% url 'persona:estudiante_detalle'  object.pk %}">{{ object.nombre }}</a></li>
+    <li class="active"><a href="{% url 'persona:estudiante_eliminar' object.pk %}">Eliminar</a></li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Expedientes estudiantiles
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block eliminar_url %}
+    {% url 'persona:estudiante_eliminar' object.pk %}
+{% endblock %}

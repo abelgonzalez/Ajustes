@@ -1,0 +1,34 @@
+<div class="two-columns">
+    <dl class="horizontal">
+        <dt><strong>Estudiante:</strong></dt>
+        {% if object.carreraEstudianteId.estudianteId %}
+            <dd>{{ object.carreraEstudianteId.estudianteId }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Motivo de ajuste:</strong></dt>
+        {% if object.motivoAjusteId %}
+            <dd>{{ object.motivoAjusteId }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Documentación:</strong></dt>
+        {% if object.documentacionAnalizadaId %}
+            <dd>{{ object.documentacionAnalizadaId }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Curso de ajuste:</strong></dt>
+        {% if object.cursoAjusteId %}
+            <dd>{{ object.cursoAjusteId }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+</div>

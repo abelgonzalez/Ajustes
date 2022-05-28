@@ -1,0 +1,325 @@
+{% extends '_listar.html' %}
+
+{% block breadcrumbs %}
+    <li class="active"><a href="#">
+        {% if ajustes_list %}
+            Ajustes devueltos
+        {% else %}
+            Expedientes devueltos
+        {% endif %} </a></li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    {% if ajustes_list %}
+        Ajustes devueltos
+    {% else %}
+        Expedientes devueltos
+    {% endif %} {% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block boton_nuevo_url %} {% endblock %}
+
+{% block buscar_url %}#{% endblock %}
+{% block body_container %}
+    {% if datos_devueltos %}
+        {% if ajustes_list %}
+            {% if coordinador_list %}
+                <div class="panel">
+                    <div class="panel-header text-center">Coordinador de carrera</div>
+                    <div class="panel-content"><span class="element-divider"></span>
+                        <table aria-describedby="dataTables-1_info" class="table striped hovered dataTable"
+                               id="dataTables-1">
+                            <thead>
+                            <tr role="row">
+                                <th>Estudiante</th>
+                                <th>Carrera de origen</th>
+                                <th>Carrera destino</th>
+                                <th>Fecha</th>
+                                <th>Devuelto por</th>
+                                <th>Acciones</th>
+                                <th>Detalles</th>
+                            </tr>
+                            </thead>
+                            <tbody role="alert" aria-live="polite" aria-relevant="all">
+                            {% for field in coordinador_list %}
+                                <tr class="odd gradeX text-center">
+                                <td>{{ field.ajusteEstudianteId.carreraEstudianteId.estudianteId.nombre }}
+                                    {{ field.ajusteEstudianteId.carreraEstudianteId.estudianteId.apellidos }}</td>
+                                <td>{{ field.carreraEstId.cohorteId.carreraTipoCursoId.carreraId.nombre }}
+                                    {{ field.carreraEstId.cohorteId.carreraTipoCursoId.tipoCursoId.siglas }}
+                                    ({{ field.carreraEstId.cohorteId.carreraTipoCursoId.universidadId.siglas }})
+                                </td>
+                                <td>{{ field.ajusteEstudianteId.cohortePropuestoId.carreraTipoCursoId.carreraId.nombre }}
+                                    {{ field.ajusteEstudianteId.cohortePropuestoId.carreraTipoCursoId.tipoCursoId.siglas }}
+                                    ({{ field.ajusteEstudianteId.cohortePropuestoId.carreraTipoCursoId.universidadId.siglas }})
+                                </td>
+                                <td>{{ field.fecha }}</td>
+                                <td>{{ field.trabajadorId }}</td>
+                                <td>
+                                    <button class="button fg-white bg-darkBlue"><i class="icon-upload-3"></i><a
+                                            href="{% url 'ajustes:aprobacion_ajuste_proceso' field.pk  6 %}">
+                                        Enviar a secretaria</a>
+                                    </button>
+                                    <button class="button success"><i class="icon-pencil"></i><a href="
+                                    {% url 'ajustes:ajusteestudiante_editar_asistente'  field.ajusteEstudianteId.pk %}">Editar</a>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="button warning"><i class="icon-glasses-2"></i> <a href="
+                               {% url 'ajustes:ajusteestudiante_detalle' field.ajusteEstudianteId.pk %}">Ver</a>
+                                    </button>
+                                </td>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br/>
+            {% endif %}
+            {% if secretaria_list %}
+                <div class="panel">
+                    <div class="panel-header text-center">Secretaria docente</div>
+                    <div class="panel-content"><span class="element-divider"></span>
+                        <table aria-describedby="dataTables-1_info" class="table striped hovered dataTable"
+                               id="dataTables-1">
+                            <thead>
+                            <tr role="row">
+                                <th>Estudiante</th>
+                                <th>Carrera de origen</th>
+                                <th>Carrera destino</th>
+                                <th>Fecha</th>
+                                <th>Devuelto por</th>
+                                <th>Acciones</th>
+                                <th>Detalles</th>
+                            </tr>
+                            </thead>
+                            <tbody role="alert" aria-live="polite" aria-relevant="all">
+                            {% for field in secretaria_list %}
+                                <tr class="odd gradeX text-center">
+                                <td>{{ field.ajusteEstudianteId.carreraEstudianteId.estudianteId.nombre }}
+                                    {{ field.ajusteEstudianteId.carreraEstudianteId.estudianteId.apellidos }}</td>
+                                <td>{{ field.carreraEstId.cohorteId.carreraTipoCursoId.carreraId.nombre }}
+                                    {{ field.carreraEstId.cohorteId.carreraTipoCursoId.tipoCursoId.siglas }}
+                                    ({{ field.carreraEstId.cohorteId.carreraTipoCursoId.universidadId.siglas }})
+                                </td>
+                                <td>{{ field.ajusteEstudianteId.cohortePropuestoId.carreraTipoCursoId.carreraId.nombre }}
+                                    {{ field.ajusteEstudianteId.cohortePropuestoId.carreraTipoCursoId.tipoCursoId.siglas }}
+                                    ({{ field.ajusteEstudianteId.cohortePropuestoId.carreraTipoCursoId.universidadId.siglas }})
+                                </td>
+                                <td>{{ field.fecha }}</td>
+                                <td>{ field.trabajadorId }}</td>
+                                <td>
+                                    <button class="button success"><i class="icon-pencil"></i><a href="
+                                    {% url 'ajustes:ajusteestudiante_editar_asistente'  field.ajusteEstudianteId.pk %}">Editar</a>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="button warning"><i class="icon-glasses-2"></i> <a href="
+                                    {% url 'ajustes:ajusteestudiante_detalle' field.ajusteEstudianteId.pk %}">Ver</a>
+                                    </button>
+                                </td>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br/>
+            {% endif %}
+            {% if decano_list %}
+                <div class="panel">
+                    <div class="panel-header text-center">Decano</div>
+                    <div class="panel-content"><span class="element-divider"></span>
+                        <table aria-describedby="dataTables-1_info" class="table striped hovered dataTable"
+                               id="dataTables-1">
+                            <thead>
+                            <tr role="row">
+                                <th>Estudiante</th>
+                                <th>Carrera de origen</th>
+                                <th>Carrera destino</th>
+                                <th>Fecha</th>
+                                <th>Devuelto por</th>
+                                <th>Acciones</th>
+                                <th>Detalles</th>
+                            </tr>
+                            </thead>
+                            <tbody role="alert" aria-live="polite" aria-relevant="all">
+                            {% for field in decano_list %}
+                                <tr class="odd gradeX text-center">
+                                <td>{{ field.ajusteEstudianteId.carreraEstudianteId.estudianteId.nombre }}
+                                    {{ field.ajusteEstudianteId.carreraEstudianteId.estudianteId.apellidos }}</td>
+                                <td>{{ field.carreraEstId.cohorteId.carreraTipoCursoId.carreraId.nombre }}
+                                    {{ field.carreraEstId.cohorteId.carreraTipoCursoId.tipoCursoId.siglas }}
+                                    ({{ field.carreraEstId.cohorteId.carreraTipoCursoId.universidadId.siglas }})
+                                </td>
+                                <td>{{ field.ajusteEstudianteId.cohortePropuestoId.carreraTipoCursoId.carreraId.nombre }}
+                                    {{ field.ajusteEstudianteId.cohortePropuestoId.carreraTipoCursoId.tipoCursoId.siglas }}
+                                    ({{ field.ajusteEstudianteId.cohortePropuestoId.carreraTipoCursoId.universidadId.siglas }})
+                                </td>
+                                <td>{{ field.fecha }}</td>
+                                <td>{{ field.trabajadorId }}</td>
+                                <td>
+                                    <button class="button fg-white bg-darkBlue"><i class="icon-checkmark"></i><a
+                                            href="
+                                                {% url 'ajustes:aprobacion_ajuste_proceso' field.pk  8 %}">
+                                        Aprobar</a>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="button warning"><i class="icon-glasses-2"></i> <a href="
+                                      {% url 'ajustes:ajusteestudiante_detalle' field.ajusteEstudianteId.pk %}">Ver</a>
+                                    </button>
+                                </td>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br/>
+            {% endif %}
+        {% endif %}
+        {% if expedientes_list %}
+            {% if coordinador_list %}
+                <div class="panel">
+                    <div class="panel-header text-center">Coordinador de carrera</div>
+                    <div class="panel-content"><span class="element-divider"></span>
+                        <table aria-describedby="dataTables-1_info" class="table striped hovered dataTable"
+                               id="dataTables-1">
+                            <thead>
+                            <tr role="row">
+                                <th>Estudiante</th>
+                                <th>Carrera de origen</th>
+                                <th>Fecha de ingreso</th>
+                                <th>Devuelto por</th>
+                                <th>Acciones</th>
+                                <th>Detalles</th>
+                            </tr>
+                            </thead>
+                            <tbody role="alert" aria-live="polite" aria-relevant="all">
+                            {% for field in coordinador_list %}
+                                <tr class="odd gradeX text-center">
+                                <td>{{ field.carreraEstId.estudianteId.nombre }}
+                                    {{ field.carreraEstId.estudianteId.apellidos }}</td>
+
+                                <td>{{ field.carreraEstId.cohorteId.carreraTipoCursoId.carreraId.nombre }}
+                                    {{ field.carreraEstId.cohorteId.carreraTipoCursoId.tipoCursoId.siglas }}
+                                    ({{ field.carreraEstId.cohorteId.carreraTipoCursoId.universidadId.siglas }})
+                                </td>
+                                <td>{{ field.fecha }}</td>
+                                <td>{{ field.trabajadorId }}</td>
+                                <td>
+                                    <button class="button fg-white bg-darkBlue"><i class="icon-checkmark"></i><a
+                                            href="
+                                                {% url 'ajustes:aprobacion_ajuste_proceso' field.pk  3 %}">
+                                        Aprobar</a>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="button warning"><i class="icon-glasses-2"></i> <a href="
+                             {% url 'persona:estudiante_detalle' field.carreraEstId.pk %}">Ver</a>
+                                    </button>
+                                </td>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br/>
+                {% if secretaria_list %}
+                    <div class="panel">
+                        <div class="panel-header text-center">Secretaria docente</div>
+                        <div class="panel-content"><span class="element-divider"></span>
+                            <table aria-describedby="dataTables-1_info" class="table striped hovered dataTable"
+                                   id="dataTables-1">
+                                <thead>
+                                <tr role="row">
+                                    <th>Estudiante</th>
+                                    <th>Carrera de origen</th>
+                                    <th>Fecha de ingreso</th>
+                                    <th>Devuelto por</th>
+                                    <th>Editar</th>
+                                    <th>Detalles</th>
+                                </tr>
+                                </thead>
+                                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                {% for field in secretaria_list %}
+                                    <tr class="odd gradeX text-center">
+                                    <td>{{ field.carreraEstId.estudianteId.nombre }}
+                                        {{ field.carreraEstId.estudianteId.apellidos }}</td>
+                                    <td>{{ field.carreraEstId.cohorteId.carreraTipoCursoId.carreraId.nombre }}
+                                        {{ field.carreraEstId.cohorteId.carreraTipoCursoId.tipoCursoId.siglas }}
+                                        ({{ field.carreraEstId.cohorteId.carreraTipoCursoId.universidadId.siglas }})
+                                    </td>
+                                    <td>{{ field.fecha }}</td>
+                                    <td>{{ field.trabajadorId }}</td>
+                                    <td>
+                                        <button class="button fg-white bg-darkBlue"><i class="icon-upload-3"></i><a
+                                                href="{% url 'ajustes:aprobacion_ajuste_proceso' field.pk  2 %}">
+                                            Enviar a coordinador</a>
+                                        </button>
+                                        <button class="button success"><i class="icon-pencil"></i><a href="
+                                    {% url 'persona:estudiante_editar'  field.carreraEstId.pk %}">Editar</a>
+                                        </button>
+                                    </td>
+                                    <td>
+                                    <button class="button warning"><i class="icon-glasses-2"></i> <a href="
+                             {% url 'persona:estudiante_detalle' field.carreraEstId.estudianteId.pk %}">Ver</a>
+                                    </button>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <br/>
+                {% endif %}
+                {% if decano_list %}
+                    <div class="panel">
+                        <div class="panel-header text-center">Decano</div>
+                        <div class="panel-content"><span class="element-divider"></span>
+                            <table aria-describedby="dataTables-1_info" class="table striped hovered dataTable"
+                                   id="dataTables-1">
+                                <thead>
+                                <tr role="row">
+                                    <th>Estudiante</th>
+                                    <th>Carrera de origen</th>
+                                    <th>Fecha de ingreso</th>
+                                    <th>Devuelto por</th>
+                                    <th>Acciones</th>
+                                    <th>Detalles</th>
+                                </tr>
+                                </thead>
+                                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                {% for field in decano_list %}
+                                    <tr class="odd gradeX text-center">
+                                    <td>{{ field.carreraEstId.estudianteId.nombre }}
+                                        {{ field.carreraEstId.estudianteId.apellidos }}</td>
+                                    <td>{{ field.carreraEstId.cohorteId.carreraTipoCursoId.carreraId.nombre }}
+                                        {{ field.carreraEstId.cohorteId.carreraTipoCursoId.tipoCursoId.siglas }}
+                                        ({{ field.carreraEstId.cohorteId.carreraTipoCursoId.universidadId.siglas }})
+                                    </td>
+                                    <td>{{ field.fecha }}</td>
+                                    <td><{{ field.trabajadorId }}</td>
+                                    <td>
+                                        <button class="button success"><i class="icon-pencil"></i><a href="
+                                    {% url 'persona:estudiante_editar'  field.carreraEstId.pk %}">Editar</a>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="button warning"><i class="icon-glasses-2"></i> <a href="
+                             {% url 'persona:estudiante_detalle' field.carreraEstId.estudianteId.pk %}">Ver</a>
+                                        </button>
+                                    </td>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <br/>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    {% else %}
+        <br/>
+        <h3 class="text-center">No hay datos para mostrar</h3>
+    {% endif %}
+{% endblock %}

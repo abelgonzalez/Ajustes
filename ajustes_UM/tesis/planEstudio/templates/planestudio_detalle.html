@@ -1,0 +1,119 @@
+{% extends '_detalle.html' %}
+{% block breadcrumbs %}
+    <li><a href="{% url 'planEstudio:plan_estudio_listar' %}">Plan de Estudio</a></li>
+    <li class="active"><a href="{% url 'planEstudio:plan_estudio_detalle'  object.pk %}">{{ object.nombre }}</a></li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Plan de estudio
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block datos %}
+    <dl class="horizontal">
+        <dt><strong>Nombre: </strong></dt>
+        {% if object.nombre %}
+            <dd>{{ object.nombre }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Períodos: </strong></dt>
+        {% if object.nombre %}
+            <dd>{{ object.cantidadPeriodos }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Comentarios: </strong></dt>
+        {% if object.comentarios %}
+            <dd>{{ object.comentarios }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+{% endblock %}
+
+{% block algo_mas %}
+    <div class="panel">
+        <div class="panel-header text-center">Cohortes</div>
+        <div class="panel-content"><span class="element-divider"></span>
+            {% if nuevo_visible %}
+                <div id="dataTables-1_length" class="dataTables_length ">
+                    <label>
+                        <button class="button primary ">
+                            <i class="icon-new"></i>
+                            <a href="{% url 'planEstudio:cohorte_nuevo' object.pk %}">Nuevo</a>
+                        </button>
+                    </label>
+                </div>
+            {% endif %}
+            <span class="element-divider"></span>
+            {% if object_list %}
+                <table aria-describedby="dataTables-1_info" class="table striped hovered dataTable" id="dataTables-1">
+                    <thead>
+                    <tr role="row">
+                        <th>Carrera</th>
+                        <th>Facultad</th>
+                        <th>Universidad</th>
+                        <th>Tipo de curso</th>
+                        <th>Curso de activación</th>
+                        {% if acciones_visible %}
+                            <th>Acciones</th>
+                        {% endif %}
+                        <th>Detalles</th>
+
+                    </tr>
+                    </thead>
+                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                    {% for foo in object_list %}
+                        <tr class="odd gradeX text-center">
+                        <td>
+                            {{ foo.carreraTipoCursoId.carreraId }}
+                        </td>
+                        <td>
+                            {{ foo.carreraTipoCursoId.facultadId.siglas }}
+                        </td>
+                        <td>
+                            {{ foo.carreraTipoCursoId.universidadId }}
+                        </td>
+                        <td>
+                            {{ foo.carreraTipoCursoId.tipoCursoId.siglas }}
+                        </td>
+                        <td>{{ foo.cursoId }}</td>
+                        {% if acciones_visible %}
+                            <td>
+                                {% if acciones_editar %}
+                                    <button class="button success">
+                                        <i class="icon-pencil"></i>
+                                        <a href=" {% url 'planEstudio:cohorte_editar'  foo.pk %}">Editar</a>
+                                    </button>
+                                {% endif %}
+                                {% if acciones_eliminar %}
+                                    <button class="button danger">
+                                        <i class="icon-remove"></i>
+                                        <a href=" {% url 'planEstudio:cohorte_eliminar'  foo.pk %}">Eliminar</a>
+                                    </button>
+                                {% endif %}
+                            </td>
+                        {% endif %}
+                        <td>
+                            <button class="button warning">
+                                <i class="icon-glasses-2"></i>
+                                <a href=" {% url 'planEstudio:cohorte_detalle'  foo.pk %}">Ver</a>
+                            </button>
+                        </td>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <br/>
+                <h3 class="text-center">Este plan de estudios no tiene cohortes.</h3>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

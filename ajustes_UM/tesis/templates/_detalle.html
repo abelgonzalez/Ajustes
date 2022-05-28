@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block breadcrumbs %}
+    {% comment %} <li><a href="{% url 'planEstudio:plan_estudio_listar' %}">Plan de Estudio</a></li>
+    <li class="active"><a href={{ object.get_absolute_url}}>Detalle {{ object.nombre }}</a></li>{% endcomment %}
+{% endblock %}
+{% block body_container_nombre %}
+    ¿Dónde estás?
+{% endblock %}
+{% block body_container_descripcion %}{% endblock %}
+
+{% block body_container %}
+
+    <div class="padding10"><p class="text-alert">{{ object.unique_error_message }}</p></div>
+
+    {% block datos %}
+       {% comment %} <dl class="horizontal">
+            <dt><strong>Nombre</strong></dt>
+            <dd>{{ object.nombre }}</dd>
+        </dl>
+        <dl class="horizontal">
+            <dt><strong>Cantidad de períodos</strong></dt>
+            <dd>{{ object.cantidadPeriodos }}</dd>
+        </dl>
+        <dl class="horizontal">
+            <dt><strong>Comentarios</strong></dt>
+            <dd>{{ object.comentarios }}</dd>
+        </dl>
+        <dl class="horizontal">
+            <dt><strong>Activo</strong></dt>
+            <dd>{{ object.activo }}</dd>
+        </dl>{% endcomment %}
+    {% endblock %}
+    {% block algo_mas %}
+    
+    {% endblock %}
+
+{% endblock %}

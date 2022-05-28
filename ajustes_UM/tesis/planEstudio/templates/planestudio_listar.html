@@ -1,0 +1,40 @@
+{% extends '_listar.html' %}
+{% block breadcrumbs %}
+    <li class="active"><a href="{% url 'planEstudio:plan_estudio_listar' %}">Plan de Estudio</a></li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Plan de Estudio
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block boton_nuevo_url %}
+    {% url 'planEstudio:plan_estudio_nuevo' %}
+{% endblock %}
+
+{% block buscar_url %} {% url 'planEstudio:plan_estudio_busqueda' %}{% endblock %}
+
+{% block th_head %}
+    <th>Nombre</th>
+    <th>Cantidad de períodos</th>
+    <th>Comentarios</th>
+{% endblock %}
+
+{% block td_for %}
+    <td>{{ field.nombre }}</td>
+    <td>{{ field.cantidadPeriodos }}</td>
+    <td>{{ field.comentarios }}</td>
+{% endblock %}
+
+{% block boton_editar_url %}
+    {% url 'planEstudio:plan_estudio_editar'  field.pk %}
+{% endblock %}
+
+{% block boton_eliminar_url %}
+    {% url 'planEstudio:plan_estudio_eliminar'  field.pk %}
+{% endblock %}
+
+{% block boton_detalle_url %}
+    {% url 'planEstudio:plan_estudio_detalle'  field.pk %}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block breadcrumbs %}
+    <li><a href="{% url 'planEstudio:plan_estudio_listar' %}">Plan de Estudio</a></li>
+    <li><a href="{% url 'planEstudio:comparar' %}">Comparar asignaturas de cohortes </a></li>
+    <li class="active"><a
+            href="{% url 'planEstudio:comparar_resultados' cohorteprev.pk cohorteact.pk %}">
+        <strong>{{ cohorteprev.carreraTipoCursoId.carreraId.nombre }} {{ cohorteprev.carreraTipoCursoId.tipoCursoId.siglas }}
+            {{ cohorteprev.carreraTipoCursoId.universidadId.siglas }} {{ cohorteprev.cursoId }}</strong>
+        con
+        <strong>{{ cohorteact.carreraTipoCursoId.carreraId.nombre }} {{ cohorteact.carreraTipoCursoId.tipoCursoId.siglas }}
+            {{ cohorteact.carreraTipoCursoId.universidadId.siglas }} {{ cohorteact.cursoId }}</strong></a></li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Comparar asignaturas de cohortes
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block body_container %}
+    {# SE HEREDA, APLICANDO EL PRINCIPIO DRY #}
+    {% include '_comparativa_2.html' %}
+{% endblock %}

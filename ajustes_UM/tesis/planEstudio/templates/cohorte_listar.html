@@ -1,0 +1,43 @@
+{% extends '_listar.html' %}
+{% block breadcrumbs %}
+    <li class="active"><a href="{% url 'planEstudio:cohorte_listar' %}">Cohorte</a></li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Cohorte
+{% endblock %}
+{% block body_container_descripcion %}{% endblock %}
+
+{% block boton_nuevo_url %} {% url 'planEstudio:cohorte_nuevo' %}{% endblock %}
+
+{% block buscar_url %} {% url 'planEstudio:cohorte_busqueda' %}{% endblock %}
+
+{% block th_head %}
+    <th>Carrera</th>
+    <th>Plan de estudio</th>
+    <th>Curso</th>
+{% endblock %}
+
+{% block td_for %}
+    <td>{{ field.carreraTipoCursoId }}</td>
+    <td>{{ field.planEstudioId }}</td>
+    <td>{{ field.cursoId }}</td>
+{% endblock %}
+
+{% block boton_editar_url %}
+    {% url 'planEstudio:cohorte_editar'  field.pk %}
+{% endblock %}
+
+{% block boton_eliminar_url %}
+    {% url 'planEstudio:cohorte_eliminar'  field.pk %}
+{% endblock %}
+
+{% block boton_detalle_url %}
+    {% url 'planEstudio:cohorte_detalle'  field.pk %}
+{% endblock %}
+
+{% block th_foot %}
+    <th>Carrera</th>
+    <th>Plan de estudio</th>
+    <th>Curso</th>
+{% endblock %}

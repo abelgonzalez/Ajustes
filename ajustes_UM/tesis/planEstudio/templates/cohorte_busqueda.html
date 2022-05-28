@@ -1,0 +1,19 @@
+{% extends 'cohorte_listar.html' %}
+{% block breadcrumbs %}
+    <li class="active"><a href="{% url 'planEstudio:cohorte_listar' %}">Cohorte</a></li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    {% include '_buscar.html' %}
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block boton_nuevo_url %}
+    {% url 'planEstudio:cohorte_nuevo' %}
+{% endblock %}
+
+{% block buscar_url %}
+    {% url 'planEstudio:cohorte_busqueda' %}
+{% endblock %}
+

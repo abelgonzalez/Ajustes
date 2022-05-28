@@ -1,0 +1,37 @@
+<div id="dataTabldeees-1_info" class="dataTables_info">
+    Mostrando página {{ page_obj.number }}
+    de {{ page_obj.paginator.num_pages }}
+</div>
+
+<div id="dataTables-1_paginate" class="dataTables_paginate paging_bootstrap pagination place-right">
+    <ul>
+        {% if page_obj.has_previous %}
+            <li class="prev"><a href="?page={{ page_obj.previous_page_number }}">← <span
+                    class="hidden-480">Anterior</span></a>
+            </li>
+        {% else %}
+            <li class="prev disabled"><a href="#">← <span class="hidden-480">Anterior</span></a>
+            </li>
+        {% endif %}
+        {% for page in page_obj.pages %}
+            {% if page %}
+                {% ifequal page page_obj.number %}
+                    <a tabindex="0" aria-controls="dataTables-1" class="paginate_button current">{{ page }}</a>
+                {% else %}
+                    <a href="?page={{ page }}" tabindex="0" aria-controls="dataTables-1"
+                       class="paginate_button">{{ page }}</a>
+                {% endifequal %}
+            {% else %}
+                ...hola ke ase
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <li class="next"><a href="?page={{ page_obj.next_page_number }}"><span
+                    class="hidden-480">Siguiente</span> →</a>
+            </li>
+        {% else %}
+            <li class="next disabled"><a href="#"> <span class="hidden-480">Siguiente</span>→</a>
+            </li>
+        {% endif %}
+    </ul>
+</div>

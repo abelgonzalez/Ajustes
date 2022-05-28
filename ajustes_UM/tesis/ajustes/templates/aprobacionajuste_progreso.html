@@ -1,0 +1,43 @@
+{% extends '_listar.html' %}
+{% block breadcrumbs %}
+    <li class="active"><a href="#%}">Progreso de ajuste</a></li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Progreso de ajuste
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block boton_nuevo_url %}
+
+ {% endblock %}
+
+{% block buscar_url %}
+    {% url 'ajustes:aprobacionajuste_busqueda' %}
+{% endblock %}
+
+{% block th_head %}
+    <th>Trabajador</th>
+    <th>Ajuste</th>
+    <th>Fecha</th>
+    <th>Estado</th>
+{% endblock %}
+
+{% block td_for %}
+    <td><a href=#>{{ field.trabajadorId }}</a></td>
+    <td>{{ field.ajusteEstudianteId }}</td>
+    <td>{{ field.fecha }}</td>
+    <td>{{ field.estadoId }}</td>
+{% endblock %}
+
+{% block boton_editar_url %}{% endblock %}
+
+{% block boton_eliminar_url %}{% endblock %}
+
+{% block th_foot %}
+    <th>Trabajador</th>
+    <th>Ajuste</th>
+    <th>Fecha</th>
+    <th>Estado</th>
+{% endblock %}

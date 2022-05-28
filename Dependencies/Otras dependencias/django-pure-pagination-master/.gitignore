@@ -1,0 +1,9 @@
+*.pyc
+*.pyo
+.idea**
+local**
+build**
+*.egg-info**
+dist**
+*.swp
+.DS_Store

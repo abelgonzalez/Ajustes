@@ -1,0 +1,18 @@
+{% extends 'planestudio_listar.html' %}
+{% block breadcrumbs %}
+    <li><a href="{% url 'planEstudio:plan_estudio_listar' %}">Plan de Estudio</a></li>
+    <li class="active"><a>Buscar</a></li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    {% include '_buscar.html' %}
+{% endblock %}
+{% block body_container_descripcion %}{% endblock %}
+
+{% block boton_nuevo_url %}
+    {% url 'planEstudio:plan_estudio_nuevo' %}
+{% endblock %}
+
+{% block buscar_url %}
+    {% url 'planEstudio:plan_estudio_busqueda' %}
+{% endblock %}

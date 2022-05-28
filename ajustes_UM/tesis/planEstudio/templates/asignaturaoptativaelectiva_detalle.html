@@ -1,0 +1,97 @@
+{% extends '_detalle.html' %}
+{% block breadcrumbs %}
+    <li><a href="{% url 'planEstudio:plan_estudio_listar' %}">Plan de Estudio</a></li>
+    <li><a href="{% url 'planEstudio:plan_estudio_detalle'  planId.pk %}">{{ planId.nombre }}</a></li>
+    <li><a
+            href="{% url 'planEstudio:cohorte_detalle' cohorteId.pk %}">{{ cohorteId.carreraTipoCursoId.carreraId.nombre }} {{ cohorteId.carreraTipoCursoId.tipoCursoId.siglas }} {{ cohorteId.carreraTipoCursoId.universidadId.siglas }} {{ cohorteId.cursoId.nombre }}</a>
+    </li>
+    <li>
+        <a href="{% url 'planEstudio:asignaturacohorte_detalle' asignaturaCohorteId.pk %}">{{ asignaturaCohorteId.asignaturaId }}</a>
+    </li>
+    <li><a href="{% url 'planEstudio:asignaturaoptativaelectiva_detalle' object.pk %}">{{ object.asignaturaId }}</a>
+    </li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Asignatura Optativa / Electiva
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+{% block datos %}
+    <dl class="horizontal">
+        <dt><strong>Asignatura:</strong></dt>
+        {% if object.asignaturaId %}
+            <dd>{{ object.asignaturaId }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Horas semanales:</strong></dt>
+        {% if object.cantidadDeHorasS %}
+            <dd>{{ object.cantidadDeHorasS }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Horas totales:</strong></dt>
+        {% if object.cantidadDeHorasT %}
+            <dd>{{ object.cantidadDeHorasT }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Tipo de asignatura:</strong></dt>
+        {% if object.tipoAsignaturaId %}
+            <dd>{{ object.tipoAsignaturaId }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Disciplina:</strong></dt>
+        {% if object.disciplinaId %}
+            <dd>{{ object.disciplinaId }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Currículo:</strong></dt>
+        {% if object.curriculoId %}
+            <dd>{{ object.curriculoId }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Evaluación:</strong></dt>
+        {% if object.tipoEvaluacionId %}
+            <dd>{{ object.tipoEvaluacionId }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Cohorte:</strong></dt>
+        {% if object.cohorteId %}
+            <dd>{{ object.cohorteId }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Comentarios:</strong></dt>
+        {% if object.comentariosId %}
+            <dd>{{ object.comentariosId }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+{% endblock %}
+
+{% block algo_mas %}
+
+{% endblock %}

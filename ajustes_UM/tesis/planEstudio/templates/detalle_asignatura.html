@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block breadcrumbs %}
+    <li><a href="{% url 'planEstudio:inicio' %}">Plan de Estudio</a></li>
+    <li class="active"><a href="{% url 'planEstudio:detalle_asignatura' asig_id %}">Detalles</a></li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Plan de estudio
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block body_container %}
+    <form action="{% url 'planEstudio:guardar_cambios_detalle_asignatura' asig_id %}" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="padding10"><p class="text-alert">{{ field.errors }}</p></div>
+            <dl class="horizontal">
+                <dt><strong>{{ field.label_tag }}</strong></dt>
+                <dd>{{ field }}</dd>
+            </dl>
+        {% endfor %}
+        <div class="text-center">
+            <input class="primary" type="submit" value="Guardar cambios"/>
+        </div>
+    </form>
+{% endblock %}

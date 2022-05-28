@@ -1,0 +1,54 @@
+{% extends '_listar.html' %}
+{% block breadcrumbs %}
+    <li class="active"><a href="{% url 'ajustes:ajusteestudiante_listar' %}">Ajuste Estudiante</a></li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Ajustes
+{% endblock %}
+{% block body_container_descripcion %}{% endblock %}
+
+{% block boton_nuevo_url %} {% url 'ajustes:ajusteestudiante_nuevo' %}{% endblock %}
+
+{% block buscar_url %} {% url 'ajustes:ajusteestudiante_busqueda' %}{% endblock %}
+
+{% block th_head %}
+    <th>Estudiante</th>
+    <th>Carrera de origen</th>
+    <th>Carrera destino</th>
+    <th>Curso de ajuste</th>
+{% endblock %}
+
+{% block td_for %}
+    <td>
+        {{ field.carreraEstudianteId.estudianteId.nombre }} {{ field.carreraEstudianteId.estudianteId.apellidos }}
+    </td>
+    <td>{{ field.carreraEstudianteId.cohorteId.carreraTipoCursoId.carreraId.nombre }}
+        {{ field.carreraEstudianteId.cohorteId.carreraTipoCursoId.tipoCursoId.siglas }}
+        ({{ field.carreraEstudianteId.cohorteId.carreraTipoCursoId.universidadId.siglas }})
+    </td>
+    <td>{{ field.cohortePropuestoId.carreraTipoCursoId.carreraId.nombre }}
+        {{ field.cohortePropuestoId.carreraTipoCursoId.tipoCursoId.siglas }}
+        ({{ field.cohortePropuestoId.carreraTipoCursoId.universidadId.siglas }})
+    </td>
+    <td>{{ field.cursoAjusteId }}</td>
+{% endblock %}
+
+{% block boton_editar_url %}
+    {% url 'ajustes:ajusteestudiante_editar_asistente'  field.pk %}
+{% endblock %}
+
+{% block boton_eliminar_url %}
+    {% url 'ajustes:ajusteestudiante_eliminar'  field.pk %}
+{% endblock %}
+
+{% block boton_detalle_url %}
+    {% url 'ajustes:ajusteestudiante_detalle' field.pk %}
+{% endblock %}
+
+{% block th_foot %}
+    <th>Estudiante</th>
+    <th>Carrera de origen</th>
+    <th>Carrera destino</th>
+    <th>Curso de ajuste</th>
+{% endblock %}

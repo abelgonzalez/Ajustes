@@ -1,0 +1,19 @@
+{% extends '_editar.html' %}
+{% block breadcrumbs %}
+    <li><a href="{% url 'planEstudio:plan_estudio_listar' %}">Plan de Estudio</a></li>
+    <li><a href="{% url 'planEstudio:plan_estudio_detalle'  planId.pk %}">{{ planId.nombre }}</a></li>
+    <li>
+        <a href="{% url 'planEstudio:cohorte_detalle' cohorteId.pk %}">{{ cohorteId.carreraTipoCursoId.carreraId }} {{ cohorteId.carreraTipoCursoId.tipoCursoId.siglas }} {{ cohorteId.carreraTipoCursoId.universidadId.siglas }} {{ cohorteId.cursoId }}</a>
+    </li>
+    <li>
+    <li><a href="{% url 'planEstudio:asignaturacohorte_detalle' object.pk %}">{{ object.asignaturaId }}</a></li>
+    <li><a href="{% url 'planEstudio:asignaturacohorte_editar' object.pk %}">Editar</a></li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Asignatura de Cohorte
+{% endblock %}
+
+{% block cancelar_url %}
+    {% url 'planEstudio:cohorte_detalle' cohorteId.pk %}
+{% endblock %}

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+
+    <meta charset="UTF-8">
+    <link href="{{ STATIC_URL }}css/metro-bootstrap.css" rel="stylesheet">
+
+    <title></title>
+</head>
+<body class="metro">
+
+
+<table style="border: double; width: 100%" id="dataTables-1">
+    <tbody>
+    <tr>
+        <th rowspan="3" scope="row"><img style="zoom: 30%" src="{{ STATIC_URL }}img/logo umcc color.png">
+        </th>
+    </tr>
+    <tr style="border: double; width: 100%">
+        <th scope="row"><strong>Universidad: </strong>Universidad de Matanzas</th>
+        <th scope="row"><strong>Facultad: </strong>Facultad de Ciencias Económicas e Informática</th>
+        <th scope="row"><strong>Carrera: </strong>Ingeniería Informática</th>
+    </tr>
+    </tbody>
+</table>
+<table style="border: double; width: 100%" id="dataTables-1">
+    <tbody style="border: inherit">
+    <tr>
+        <th scope="row"><h1>Ajuste a plan</h1></th>
+    </tr>
+    </tbody>
+</table>
+<table style="border: double; width: 100%" id="dataTables-1">
+    <tbody style="border: inherit">
+    <tr>
+        <th align="left"><strong>A favor de: </strong>{{ estudiante }}</th>
+    </tr>
+    <tr>
+        <th align="left"><strong>Carrera de
+            origen: </strong>{{ cohorteact.carreraTipoCursoId.carreraId.nombre }} {{ cohorteact.carreraTipoCursoId.tipoCursoId.siglas }} {{ cohorteact.carreraTipoCursoId.universidadId.siglas }}
+        </th>
+    </tr>
+    <tr>
+        <th align="left"><strong>Carrera a
+            cursar: </strong>{{ cohorteprev.carreraTipoCursoId.carreraId.nombre }} {{ cohorteprev.carreraTipoCursoId.tipoCursoId.siglas }} {{ cohorteprev.carreraTipoCursoId.universidadId.siglas }}
+        </th>
+    </tr>
+    <tr>
+        <th align="left"><strong>Año y semestre que comienza: </strong>{{ ajusteEstudiante.anhoSemestreAjustadoId }}
+        </th>
+    </tr>
+    </tbody>
+</table>
+<br/>
+
+<div class="accordion" data-role="accordion" data-closeany="true">
+    <div class="accordion-frame">
+        <a class="active heading" style="border: double; width: 100%"><h3 class="text-center">Asignaturas vencidas</h3>
+        </a>
+
+        <div style="display: block; border: double" class="content clearfix">
+            <span class="element-divider"></span>
+            <table aria-describedby="dataTables-1_info" class="table striped hovered dataTable" id="dataTables-1">
+                <thead>
+                <tr role="row">
+                    <th>Asignatura</th>
+                    <th>Año</th>
+                    <th>Semestre</th>
+                    <th>Cantidad de horas totales</th>
+                    <th>Carrera</th>
+                </tr>
+                </thead>
+                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                {% for foo in list_vencidas_marca %}
+                    <tr class="odd gradeX text-center">
+                    <td>  {{ foo.asignaturaCohorteId.asignaturaId }} </td>
+                    <td>  {{ foo.asignaturaCohorteId.anhoSemestreId.anhoId.nombre }} </td>
+                    <td>  {{ foo.asignaturaCohorteId.anhoSemestreId.semestreId }} </td>
+                    <td>  {{ foo.asignaturaCohorteId.cantidadHorasT }} </td>
+                    <td>{{ foo.carreraEstudianteId.cohorteId.carreraTipoCursoId.carreraId }} {{ foo.carreraEstudianteId.cohorteId.carreraTipoCursoId.universidadId.siglas }}</td>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br/>
+
+    <div class="accordion-frame">
+        <a class="active heading" style="border: double; width: 100%"><h3 class="text-center">Ajuste</h3></a>
+
+        <div class="row" style="border: double; width: 100%">
+            <div class="span12">
+                {% for  a in lista_cp %}
+                    {% ifchanged a.anhoSemestreId %}
+                        {% ifchanged a.anhoSemestreId.anhoId.nombre %}
+                            <p></p>
+                            <h2 class="text-center"> *** {{ a.anhoSemestreId.anhoId.nombre }} año ***</h2>
+                        {% endifchanged %}
+                        <div class="listview-outlook" data-role="listview">
+                            <div style="display: block">
+                                <a class="list marked">
+                                    <div class="list-content">
+                                            <span class="list-title">
+                                            {{ a.asignaturaId }}
+                                                {% for comprueba in listaAsigAjustadas %}
+                                                    {% if a == comprueba.asignaturaCohorteId %}
+                                                        {% if comprueba.situacionId_id == 2 %} {# abonada #}
+                                                            <span class="place-right meduim-size">Abonada</span>
+                                                        {% endif %}
+                                                        {% if comprueba.situacionId_id == 3 %} {# convalidada #}
+                                                            <span class="place-right meduim-size">Convalidada</span>
+                                                            {% for b in listaAsigConvalidadas %}
+                                                                {% if comprueba.asignaturaCohorteId == b.ajusteAsignaturaId.asignaturaCohorteId %}
+                                                                    <span class="list-subtitle">Convalidada con: {{ b.asignaturaVencidaId.asignaturaCohorteId.asignaturaId }}</span>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                        {% if comprueba.situacionId_id == 1 %} {# pendiente #}
+                                                            <span class="place-right meduim-size">Pendiente</span>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                                </span>
+
+                                        {% for c in asig_opt_elec1 %}
+                                            {% if a.pk == c.asignaturaCohorteId_id %}
+                                                <span class="list-remark ">{{ c.asignaturaId }}</span>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="listview-outlook" data-role="listview">
+                            <div style="display: block">
+                                <a class="list marked">
+                                    <div class="list-content">
+                                            <span class="list-title">
+                                            {{ a.asignaturaId }}
+                                                {% for comprueba in listaAsigAjustadas %}
+                                                    {% if a == comprueba.asignaturaCohorteId %}
+                                                        {% if comprueba.situacionId_id == 2 %} {# abonada #}
+                                                            <span class="place-right meduim-size">Abonada</span>
+                                                        {% endif %}
+                                                        {% if comprueba.situacionId_id == 3 %} {# convalidada #}
+                                                            <span class="place-right meduim-size">Convalidada</span>
+                                                            {% for b in listaAsigConvalidadas %}
+                                                                {% if comprueba.asignaturaCohorteId == b.ajusteAsignaturaId.asignaturaCohorteId %}
+                                                                    <span class="list-subtitle">Convalidada con: {{ b.asignaturaVencidaId.asignaturaCohorteId.asignaturaId }}</span>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                        {% if comprueba.situacionId_id == 1 %} {# pendiente #}
+                                                            <span class="place-right meduim-size">Pendiente</span>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                                </span>
+                                        {% for c in asig_opt_elec1 %}
+                                            {% if a.pk == c.asignaturaCohorteId_id %}
+                                                <span class="list-remark ">{{ c.asignaturaId }}</span>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    {% endifchanged %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <table style="width: 100%" id="dataTables-1">
+        <tbody>
+        <tr style="width: 100%">
+            <th scope="col">______________________</th>
+            <th scope="col"></th>
+            <th scope="col">______________________</th>
+        </tr>
+        <tr style="width: 100%">
+            <th scope="col"><strong>Confeccionado por: </strong>Dr.C Julio A. Telot González</th>
+            {#  impreso_por #}
+            <th scope="col">Cuño</th>
+            <th scope="col"><strong>Aprobado por: </strong>DrC. Roberto Frías Jiménez</th>
+        </tr>
+        <tr style="width: 100%">
+            <th scope="col"> Coordinador de carrera</th>
+            <th scope="col"></th>
+            <th scope="col">Decano FACEI</th>
+        </tr>
+        </tbody>
+    </table>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            window.print();
+        }
+    </script>
+</div>
+</body>
+</html>

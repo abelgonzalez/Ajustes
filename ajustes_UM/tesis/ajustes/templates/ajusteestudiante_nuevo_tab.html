@@ -1,0 +1,113 @@
+{% extends '_nuevo.html' %}
+{% block breadcrumbs %}
+    <li><a href="{% url 'ajustes:ajusteestudiante_listar' %}">Ajustes</a></li>
+    <li class="active"><a href="{% url 'ajustes:ajusteestudiante_nuevo' %} ">Nuevo</a></li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Ajustes
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block estilos_personalizados %}
+    <script src="{{ STATIC_URL }}js/jquery.formset.min.js"></script>
+{% endblock %}
+
+{% block body_container %}
+    {% if hay_ajustes %}
+        <table aria-describedby="dataTables-1_info" class="table striped hovered dataTable"
+               id="dataTables-1">
+            <thead>
+            <tr role="row">
+                <th>Estudiante</th>
+                <th>Carrera de origen</th>
+                <th>Fecha</th>
+                <th>Confeccionado por</th>
+                <th>Acciones</th>
+                <th>Detalles</th>
+            </tr>
+            </thead>
+            <tbody role="alert" aria-live="polite" aria-relevant="all">
+
+            {% for field in coordinador_list %}
+                <tr class="odd gradeX text-center">
+                <td>{{ field.carreraEstId.estudianteId.nombre }}
+                    {{ field.carreraEstId.estudianteId.apellidos }}</td>
+                <td>{{ field.carreraEstId.cohorteId.carreraTipoCursoId.carreraId.nombre }}
+                    {{ field.carreraEstId.cohorteId.carreraTipoCursoId.tipoCursoId.siglas }}
+                    ({{ field.carreraEstId.cohorteId.carreraTipoCursoId.universidadId.siglas }})
+                </td>
+
+                <td>{{ field.fecha }}</td>
+                <td>{{ field.trabajadorId }}</td>
+                <td>
+                    {% if field.estadoId_id == 3 %}
+                        <button class="button fg-white bg-darkBlue"><i class="icon-scissors"></i><a
+                                href="
+                                                {% url 'ajustes:ajusteestudiante_nuevo_asistente' field.carreraEstId.pk %}">
+                            Hacer ajuste</a>
+                        </button>
+                        <button class="button fg-white bg-darkRed"><i class="icon-blocked"></i> <a
+                                href="
+                                                {% url 'ajustes:aprobacion_ajuste_proceso' field.pk  4 %}">
+                            Devolver</a>
+                        </button>
+                    {% elif field.estadoId_id == 5 %}
+                        <button class="button fg-white bg-darkBlue"><i class="icon-upload-3"></i><a
+                                href="{% url 'ajustes:aprobacion_ajuste_proceso' field.pk  6 %}">
+                            Enviar a secretaria</a>
+                        </button>
+                        {% if field.ajusteEstudianteId.pk %}
+                            <button class="button success"><i class="icon-pencil"></i> <a
+                                    href=" {% url 'ajustes:ajusteestudiante_editar_asistente' field.ajusteEstudianteId.pk %}">
+                                Editar</a>
+                            </button>
+                        {% else %}
+                            <p class="text-muted">No se especificó una carrera de destino</p>
+                        {% endif %}
+
+                    {% endif %}
+                </td>
+                <td>
+                    {% if field.estadoId_id == 3 %}
+                        <button class="button warning"><i class="icon-glasses-2"></i> <a href="
+                             {% url 'persona:estudiante_detalle' field.carreraEstId.estudianteId.pk %}">Ver</a>
+                        </button>
+                    {% elif field.estadoId_id == 5 %}
+                        {% if field.ajusteEstudianteId.pk %}
+                            <button class="button warning"><i class="icon-glasses-2"></i> <a href="
+                             {% url 'ajustes:ajusteestudiante_detalle' field.ajusteEstudianteId.pk %}">Ver</a>
+                            </button>
+                        {% else %}
+                            <p class="text-muted">No se especificó una carrera de destino</p>
+                        {% endif %}
+
+                    {% endif %}
+                </td>
+            {% endfor %}
+            </tbody>
+        </table>
+        <br/>
+
+        <p class="text-center">
+            <button class="button primary">
+                <i class="icon-arrow-left-5"></i>
+                <a href="{% url 'ajustes:ajusteestudiante_listar' %}">No, cancelar</a>
+            </button>
+        </p>
+    {% else %}
+        <br/>
+        <h3 class="text-center">No hay ajustes para procesar</h3>
+    {% endif %}
+
+
+{% endblock %}
+
+{% block KO_Files %}
+    <script src="{{ STATIC_URL }}js/metro/metro-listview.js"></script>
+    <script src="{{ STATIC_URL }}js/metro/metro-tab-control.js"></script>
+    <script src="{{ STATIC_URL }}js/myJS.js"></script>
+    <script src="{{ STATIC_URL }}js/koFiles/comparar.js"></script>
+    <script src="{{ STATIC_URL }}js/koFiles/ajuste_asistente.js"></script>
+{% endblock %}

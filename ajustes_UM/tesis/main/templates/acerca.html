@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block breadcrumbs %}
+    <li><a href="{% url 'acerca' %}">Acerca de</a></li>
+{% endblock %}
+{% block body_container_nombre %}
+    Acerca
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block body_container %}
+    <div class="row">
+        <div class="span12 text-center">
+            <h1>Acerca del Sitio</h1>
+            <br>
+            <address>
+                <strong>Universidad de Matanzas</strong> <br/>
+                <strong>Sede Camilo Cienfuegos</strong>
+                <br/>
+                Carretera Vía Blanca Km 5 1/2
+                <br/>
+                Matanzas, Cuba, CP 40500
+                <br/>
+            </address>
+            <br/>
+            <br/>
+            <address>
+                <strong>Diseño y programación:</strong><br>
+                <strong>Abel González Mondéjar</strong><br>
+                <abbr title="Móvil">M:</abbr> (+53) 536-99860
+                <a href="mailto:abelglez89@gmail.com">abelglez89@gmail.com</a>
+            </address>
+        </div>
+    </div>
+{% endblock %}

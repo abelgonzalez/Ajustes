@@ -1,0 +1,90 @@
+<div class="two-columns">
+    <dl class="horizontal">
+        <dt><strong>CI:</strong></dt>
+        {% if object.carneIdentidad %}
+            <dd>{{ object.carneIdentidad }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Nombre:</strong></dt>
+        {% if object.nombre %}
+            <dd>{{ object.nombre }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Apellidos:</strong></dt>
+        {% if object.apellidos %}
+            <dd>{{ object.apellidos }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Dirección:</strong></dt>
+        {% if object.direccion %}
+            <dd>{{ object.direccion }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Ubicación:</strong></dt>
+        {% if object.ubicacionId %}
+            <dd>{{ object.ubicacionId }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Nacionalidad:</strong></dt>
+        {% if object.nacionalidadId %}
+            <dd>{{ object.nacionalidadId }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Sexo</strong></dt>
+        {% if object.sexoId %}
+            <dd>{{ object.sexoId }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Etnia:</strong></dt>
+        {% if object.etniaId %}
+            <dd>{{ object.etniaId }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Email:</strong></dt>
+        {% if object.correoElectronico %}
+            <dd>{{ object.correoElectronico }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Ingreso al ES:</strong></dt>
+        {% if object.fechaIngESup %}
+            <dd>{{ object.fechaIngESup }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Índice académico</strong></dt>
+        {% if object.indiceAcademico %}
+            <dd>{{ object.indiceAcademico }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+</div>

@@ -1,0 +1,15 @@
+{% extends '_editar.html' %}
+{% block tituloSitio %} Plan de estudio {% endblock %}{
+{% block breadcrumbs %}
+    <li><a href="{% url 'planEstudio:plan_estudio_listar' %}">Plan de Estudio</a></li>
+    <li class="active"><a
+            href="{% url 'planEstudio:plan_estudio_editar' object.pk %}">Editar {{ object.nombre }}</a></li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Plan de estudio
+{% endblock %}
+
+{% block cancelar_url %}
+    {% url 'planEstudio:plan_estudio_listar' %}
+{% endblock %}

@@ -1,0 +1,59 @@
+<div class="fieldWrapper">
+    <p class="text-alert"></p>
+    <dl class="horizontal ">
+        <dt><strong><label for="id_carreraEstudianteId">Estudiante:</label></strong></dt>
+        <dd>
+            <span id="id_carreraEstudianteId">{{ carreraestudiante.estudianteId }}</span>
+            <span hidden="hidden" id="carreraEstudianteId">{{ carreraestudiante.pk }}</span>
+        </dd>
+    </dl>
+</div>
+
+<div class="fieldWrapper">
+    <p class="text-alert"></p>
+    <dl class="horizontal ">
+        <dt><strong><label for="id_motivoAjusteId">Motivo de ajuste:</label></strong></dt>
+        <dd><select id="id_motivoAjusteId" name="motivoAjusteId">
+            {% for a in motivo %}
+                <option value="{{ a.pk }}"
+                        {% if a.pk == motivo_selected.pk %}
+                            {{ 'selected' }}
+                        {% endif %}
+                        >{{ a.nombre }}</option>
+            {% endfor %}
+        </select></dd>
+    </dl>
+</div>
+
+<div class="fieldWrapper">
+    <p class="text-alert"></p>
+    <dl class="horizontal ">
+        <dt><strong><label for="id_documentacionAnalizadaId">Documentación:</label></strong></dt>
+        <dd><select id="id_documentacionAnalizadaId" name="documentacionAnalizadaId">
+            {% for a in documentacionAnalizada %}
+                <option value="{{ a.pk }}"
+                        {% if a.pk == documentacionAnalizada_selected.pk %}
+                            {{ 'selected' }}
+                        {% endif %}
+                        >{{ a.nombre }}</option>
+            {% endfor %}
+        </select></dd>
+    </dl>
+</div>
+
+<div class="fieldWrapper">
+    <p class="text-alert"></p>
+    <dl class="horizontal ">
+        <dt><strong><label for="id_cursoAjusteId">Curso actual:</label></strong></dt>
+        <dd><select id="id_cursoAjusteId" name="cursoAjusteId">
+            {% for a in cursoAjuste %}
+                <option value="{{ a.pk }}"
+                        {% if a.pk == cursoAjuste_selected.pk %}
+                            {{ 'selected' }}
+                        {% endif %}
+                        >{{ a.nombre }}</option>
+            {% endfor %}
+        </select></dd>
+    </dl>
+</div>
+

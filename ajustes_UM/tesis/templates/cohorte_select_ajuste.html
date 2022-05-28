@@ -1,0 +1,112 @@
+{% if listAsigCohorte %}
+    {% for  a in listAsigCohorte %}
+        {% ifchanged a.anhoSemestreId %}
+            {% ifchanged a.anhoSemestreId.anhoId.nombre %}
+                <p></p>
+                <h2 class="text-center"> *** {{ a.anhoSemestreId.anhoId.nombre }} año ***</h2>
+            {% endifchanged %}
+            <div class="listview-outlook" data-role="listview">
+                <div class="list-group">
+                    <a href="" class="group-title">
+                        <h5 class="text-center">{{ a.anhoSemestreId.semestreId }} semestre</h5></a>
+                    <div style="display: block;">
+                        <a id="cuadro{{ a.pk }}" class="list marked">
+                            <div class="list-content">
+                                    <span class="list-title">
+                                        {{ a.asignaturaId }}
+                                        <span class="place-right">
+                                          <label for="situacion1"><strong>Situación:</strong></label>
+                                          <select id="situacion1_{{ a.pk }}">
+                                              {% for s in situacion %}
+                                                  <option value="{{ s.pk }}"
+                                                          {% for selec in ajuste_asignatura %}
+                                                              {% if  a.pk == selec.asignaturaCohorteId.pk and selec.situacionId.nombre == s.nombre %}
+                                                                  {{ 'selected' }}
+                                                              {% endif %}
+                                                          {% endfor %}
+                                                          >
+                                                      {{ s.nombre }}
+                                                  </option>
+                                              {% endfor %}
+                                          </select>
+                                          <label for="convalidada1" id="convalidada_label_{{ a.pk }}"
+                                                 class="no-display"><strong>Con cuál:</strong></label>
+                                          <select id="convalidada1_{{ a.pk }}"  class="no-display">
+                                              {% for con in asignVenc %}
+                                                  <option value="{{ con.asignaturaCohorteId.pk }}"
+                                                          {% for selec in asignVenc %}
+                                                              {% if con.asignaturaCohorteId.pk == selec.asignaturaVencidaId.asignaturaCohorteId.pk %}
+                                                                  {{ 'selected' }}
+                                                              {% endif %}
+                                                          {% endfor %}
+                                                          >{{ con.asignaturaCohorteId.asignaturaId }}</option>
+                                              {% endfor %}
+                                          </select>
+                                        </span>
+                                </span>
+                                {% for c in asig_opt_elec1 %}
+                                    {% if a.pk == c.asignaturaCohorteId_id %}
+                                        <span class="list-remark ">{{ c.asignaturaId }}
+                                        </span>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="listview-outlook" data-role="listview">
+                <div style="display: block;">
+                    <a id="cuadro{{ a.pk }}" class="list marked">
+                        <div class="list-content">
+                                <span class="list-title">
+                                   {{ a.asignaturaId }}
+                                     <span class="place-right">
+                                          <label for="situacion1"><strong>Situación:</strong></label>
+                                          <select id="situacion1_{{ a.pk }}">
+                                              {% for s in situacion %}
+                                                  <option value="{{ s.pk }}"
+                                                          {% for selec in ajuste_asignatura %}
+                                                              {% if  a.pk == selec.asignaturaCohorteId.pk and selec.situacionId.nombre == s.nombre %}
+                                                                  {{ 'selected' }}
+                                                              {% endif %}
+                                                          {% endfor %}
+                                                          >
+                                                      {{ s.nombre }}
+                                                  </option>
+                                              {% endfor %}
+                                          </select>
+                                          <label for="convalidada1" id="convalidada_label_{{ a.pk }}"
+                                                 class="no-display"><strong>Con cuál:</strong></label>
+                                         <select id="convalidada1_{{ a.pk }}" class="no-display">
+                                             {% for con in asignVenc %}
+                                                 <option value="{{ con.asignaturaCohorteId.pk }}"
+                                                         {% for selec in asignVenc %}
+                                                             {% if con.asignaturaCohorteId.pk == selec.asignaturaVencidaId.asignaturaCohorteId.pk%}
+                                                                 {#                                                             {% if  a.pk == selec.asignaturaCohorteId.pk and selec.situacionId.nombre == s.nombre %}#}
+                                                                 {{ 'selected' }}
+                                                             {% endif %}
+                                                         {% endfor %}
+                                                         >{{ con.asignaturaCohorteId.asignaturaId }}</option>
+                                             {% endfor %}
+                                         </select>
+                                        </span>
+                                </span>
+                            {% for c in asig_opt_elec1 %}
+                                {% if a.pk == c.asignaturaCohorteId_id %}
+                                    <span class="list-remark ">
+                                        {{ c.asignaturaId }}
+                                    </span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% endifchanged %}
+    {% endfor %}
+{% else %}
+    <br/>
+    <h3 class="text-center">Este cohorte no tiene asignaturas.</h3>
+{% endif %}

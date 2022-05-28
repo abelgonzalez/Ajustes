@@ -1,0 +1,56 @@
+{% extends '_listar.html' %}
+{% block breadcrumbs %}
+    <li class="active"><a href="{% url 'ajustes:aprobacionajuste_aprobado' %}">Ajustes aprobados</a></li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Aprobación de ajustes
+{% endblock %}
+{% block body_container_descripcion %}{% endblock %}
+
+{% block boton_nuevo_url %} {% endblock %}
+
+{% block buscar_url %} {% url 'ajustes:aprobacionajuste_aprobado_buscar' %}{% endblock %}
+
+{% block th_head %}
+    <th>Trabajador</th>
+    <th>Carrera de origen</th>
+    <th>Carrera destino</th>
+    <th>Fecha</th>
+    <th>Estado</th>
+    <th>Detalles</th>
+{% endblock %}
+
+{% block td_for %}
+    <td>{{ field.trabajadorId }}</td>
+    {% if field.carreraEstId %}
+        <td>{{ field.carreraEstId }}</td>
+    {% else %}
+        <dd><p class="text-muted">Aún no se ha hecho ajuste</p></dd>
+    {% endif %}
+    <td>{{ field.ajusteEstudianteId }}</td>
+    <td>{{ field.fecha }}</td>
+    <td>{{ field.estadoId }}</td>
+    <td>
+        <button class="button warning"><i class="icon-glasses-2"></i> <a
+                href="{% url 'ajustes:ajusteestudiante_progreso'  field.pk %}">Ver</a>
+        </button>
+    </td>
+{% endblock %}
+
+{% block boton_editar_url %}
+
+{% endblock %}
+
+{% block boton_eliminar_url %}
+
+{% endblock %}
+
+{% block th_foot %}
+    <th>Trabajador</th>
+    <th>Carrera de origen</th>
+    <th>Carrera destino</th>
+    <th>Fecha</th>
+    <th>Estado</th>
+    <th>Detalles</th>
+{% endblock %}

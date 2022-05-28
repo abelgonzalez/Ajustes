@@ -1,0 +1,170 @@
+<div class="row">
+    <div class="span6">
+        <blockquote>
+            <p class="subheader">
+                {{ cohorteprev.carreraTipoCursoId.carreraId.nombre }} {{ cohorteprev.carreraTipoCursoId.tipoCursoId.siglas }}
+            </p>
+
+            <p>
+                <a>Plan de estudio</a>
+                <small>{{ cohorteprev.planEstudioId }}</small>
+            </p>
+            <p>
+                <a>Curso</a>
+                <small>{{ cohorteprev.cursoId }}</small>
+            </p>
+            <a>Universidad</a>
+            <small>{{ cohorteprev.carreraTipoCursoId.universidadId.nombre }}</small>
+        </blockquote>
+        {% for  a in lista_cp %}
+            {% ifchanged a.anhoSemestreId %}
+                {% ifchanged a.anhoSemestreId.anhoId.nombre %}
+                    <p></p>
+                    <h2 class="text-center"> *** {{ a.anhoSemestreId.anhoId.nombre }} año ***</h2>
+                {% endifchanged %}
+                <div class="listview-outlook" data-role="listview">
+                    <div class="list-group">
+                        <a href="" class="group-title">
+                            <h5 class="text-center">{{ a.anhoSemestreId.semestreId }}</h5></a>
+
+                        <div style="display: block;">
+                            <a class="list marked"
+                               href="{% url 'planEstudio:detalle_asignatura' a.pk %}">
+                                <div class="list-content ">
+                                                <span class="list-title">
+                                                    {{ a.asignaturaId }}
+                                                    {% for comprueba in listaAsigAjustadas %}
+                                                        {% if a == comprueba.asignaturaCohorteId %}
+                                                            {% if comprueba.situacionId_id == 2 %} {# abonada #}
+                                                                <span class="place-right icon-flag-2 fg-green meduim-size"></span>
+                                                            {% endif %}
+                                                            {% if comprueba.situacionId_id == 3 %} {# convalidada #}
+                                                                <span class="place-right icon-flag-2 fg-blue meduim-size"></span>
+                                                                {% for b in listaAsigConvalidadas %}
+                                                                    {% if comprueba.asignaturaCohorteId == b.ajusteAsignaturaId.asignaturaCohorteId %}
+                                                                        <span class="list-subtitle">Convalidada con: {{ b.asignaturaVencidaId.asignaturaCohorteId.asignaturaId }}</span>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            {% endif %}
+                                                            {% if comprueba.situacionId_id == 1 %} {# pendiente #}
+                                                                <span class="place-right icon-flag-2 fg-red meduim-size"></span>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </span>
+                                    {% for c in asig_opt_elec1 %}
+                                        {% if a.pk == c.asignaturaCohorteId_id %}
+                                            <span class="list-remark ">{{ c.asignaturaId }}</span>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            {% else %}
+                <div class="listview-outlook" data-role="listview">
+                    <div style="display: block;">
+                        <a class="list marked" href="{% url 'planEstudio:asignaturacohorte_detalle' a.pk %}">
+                            <div class="list-content">
+                                            <span class="list-title">
+                                            {{ a.asignaturaId }}
+                                                {% for comprueba in listaAsigAjustadas %}
+                                                    {% if a == comprueba.asignaturaCohorteId %}
+                                                        {% if comprueba.situacionId_id == 2 %} {# abonada #}
+                                                            <span class="place-right icon-flag-2 fg-green meduim-size"></span>
+                                                        {% endif %}
+                                                        {% if comprueba.situacionId_id == 3 %} {# convalidada #}
+                                                            <span class="place-right icon-flag-2 fg-blue meduim-size"></span>
+                                                            {% for b in listaAsigConvalidadas %}
+                                                                {% if comprueba.asignaturaCohorteId == b.ajusteAsignaturaId.asignaturaCohorteId %}
+                                                                    <span class="list-subtitle">Convalidada con: {{ b.asignaturaVencidaId.asignaturaCohorteId.asignaturaId }}</span>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                        {% if comprueba.situacionId_id == 1 %} {# pendiente #}
+                                                            <span class="place-right icon-flag-2 fg-red meduim-size"></span>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                                </span>
+
+                                {% for c in asig_opt_elec1 %}
+                                    {% if a.pk == c.asignaturaCohorteId_id %}
+                                        <span class="list-remark ">{{ c.asignaturaId }}</span>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% endifchanged %}
+        {% endfor %}
+    </div>
+    <div class="span6">
+        <blockquote>
+            <p class="subheader">
+                {{ cohorteact.carreraTipoCursoId.carreraId.nombre }} {{ cohorteact.carreraTipoCursoId.tipoCursoId.siglas }}
+            </p>
+
+            <p>
+                <a>Plan de estudio</a>
+                <small>{{ cohorteact.planEstudioId }}</small>
+            </p>
+            <p>
+                <a>Curso</a>
+                <small>{{ cohorteact.cursoId }}</small>
+            </p>
+            <a>Universidad</a>
+            <small>{{ cohorteact.carreraTipoCursoId.universidadId.nombre }}</small>
+        </blockquote>
+        {% for  a in lista_ca %}
+            {% ifchanged a.anhoSemestreId %}
+                {% ifchanged a.anhoSemestreId.anhoId.nombre %}
+                    <p></p>
+                    <h2 class="text-center"> *** {{ a.anhoSemestreId.anhoId.nombre }} año ***</h2>
+                {% endifchanged %}
+                <div class="listview-outlook" data-role="listview">
+                    <div class="list-group">
+                        <a href="" class="group-title">
+                            <h5 class="text-center">{{ a.anhoSemestreId.semestreId }}</h5></a>
+
+                        <div style="display: block;">
+                            <a class="list marked"
+                               href="{% url 'planEstudio:asignaturacohorte_detalle' a.pk %}">
+                                <div class="list-content">
+                                            <span class="list-title">
+                                            {{ a.asignaturaId }}
+                                                </span>
+                                    {% for c in asig_opt_elec2 %}
+                                        {% if a.pk == c.asignaturaCohorteId_id %}
+                                            <span class="list-remark ">{{ c.asignaturaId }}</span>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="listview-outlook" data-role="listview">
+                    <div style="display: block;">
+                        <a class="list marked" href="#">
+                            <div class="list-content">
+                                            <span class="list-title">
+                                            {{ a.asignaturaId }}
+                                            </span>
+                                {% for c in asig_opt_elec2 %}
+                                    {% if a.pk == c.asignaturaCohorteId_id %}
+                                        <span class="list-remark ">{{ c.asignaturaId }}</span>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% endifchanged %}
+        {% endfor %}
+    </div>
+</div>

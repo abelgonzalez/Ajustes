@@ -1,0 +1,14 @@
+{% extends 'ajusteestudiante_listar.html' %}
+{% block tituloSitio %} Ajuste de Estudiante {% endblock %}{
+{% block breadcrumbs %}
+    <li class="active"><a href="{% url 'ajustes:ajusteestudiante_listar' %}">Ajustes</a></li>
+{% endblock %}
+{% block body_container_nombre %}
+    {% include '_buscar.html' %}
+{% endblock %}
+{% block body_container_descripcion %}{% endblock %}
+
+{% block boton_nuevo_url %} {% url 'ajustes:ajusteestudiante_nuevo' %}{% endblock %}
+
+{% block buscar_url %} {% url 'ajustes:ajusteestudiante_busqueda'%}{% endblock %}
+

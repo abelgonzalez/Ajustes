@@ -1,0 +1,13 @@
+{% if user.is_authenticated %}
+    {% if request.session.administrador %}
+        {% include 'header_administrador.html' %}
+    {% elif request.session.secretaria %}
+        {% include 'header_secretaria.html' %}
+    {% elif request.session.coordinador %}
+        {% include 'header_coordinador.html' %}
+    {% elif request.session.decano %}
+        {% include 'header_decano.html' %}
+    {% endif %}
+{% else %}
+    {% include 'header_anonimo.html' %}
+{% endif %}

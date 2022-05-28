@@ -1,0 +1,66 @@
+<div class="frames">
+    <div class="frame" id="_page_11">
+        <dl id="dl_universidad1" class="horizontal">
+            <dt><label for="universidad1"><strong>Universidad:</strong></label></dt>
+            <dd><select id="universidad1">
+                {% for a in universidad1 %}
+                    <option value="{{ a.id }}"
+                            {% if a.id == univ_selected %}
+                                {{ 'selected' }}
+                            {% endif %}
+                            >{{ a.nombre }}</option>
+                {% endfor %}
+            </select></dd>
+        </dl>
+        <dl id="dl_facultad1" class="horizontal" data-bind="visible: ShowFac">
+            <dt><label for="facultad1"><strong>Facultad:</strong></label></dt>
+            <dd>
+                <select id="facultad1">
+                </select>
+            </dd>
+             {% if fac_selected %}
+            <input type="hidden" id="id_facultad" value="{{ fac_selected }}">
+            {% endif %}
+        </dl>
+        <dl id="dl_carrera1" class="horizontal" data-bind="visible: ShowCarr">
+            <dt><label for="carrera1"><strong>Carrera:</strong></label></dt>
+            <dd>
+                <select id="carrera1">
+                </select>
+            </dd>
+             {% if carr_selected %}
+            <input type="hidden" id="id_carrera" value="{{ carr_selected }}">
+            {% endif %}
+        </dl>
+        <dl id="dl_tipo_curso1" class="horizontal ">
+            <dt><label for="tipo_curso1"><strong>Tipo de curso:</strong></label></dt>
+            <dd><select id="tipo_curso1">
+            </select></dd>
+             {% if tipocurso_selected %}
+            <input type="hidden" id="id_tipocurso" value="{{ tipocurso_selected }}">
+            {% endif %}
+        </dl>
+        <dl id="dl_plan_estudio1" class="horizontal">
+            <dt><label for="plan_estudio1"><strong>Plan de estudio:</strong></label></dt>
+            <dd><select id="plan_estudio1">
+
+            </select></dd>
+            {% if plan_selected %}
+            <input type="hidden" id="id_plan" value="{{ plan_selected }}">
+            {% endif %}
+        </dl>
+        <dl id="dl_curso1" class="horizontal">
+            <dt><label for="curso1"><strong>Curso:</strong></label></dt>
+            <dd><select id="curso1">
+            </select></dd>
+             {% if curso_selected %}
+            <input type="hidden" id="id_curso" value="{{ curso_selected }}">
+            {% endif %}
+        </dl>
+        <dl id="dl_cohorte1" class="horizontal no-visible">
+            <dt><label for="cohorte1"><strong>Cohorte:</strong></label></dt>
+            <dd><select id="cohorte1">
+            </select></dd>
+        </dl>
+    </div>
+</div>

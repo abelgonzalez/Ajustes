@@ -1,0 +1,52 @@
+{% extends '_listar.html' %}
+{% block breadcrumbs %}
+    <li class="active"><a href="{% url 'persona:estudiante_listar' %}">Expedientes estudiantiles</a></li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Expedientes estudiantiles
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block boton_nuevo_url %} {% url 'persona:estudiante_nuevo' %}{% endblock %}
+
+{% block bucarr %}{% endblock %}
+
+{% block th_head %}
+    <th>Carne de identidad</th>
+    <th>Nombre</th>
+    <th>Apellidos</th>
+    <th>Carrera</th>
+    <th>Fecha de ingreso</th>
+{% endblock %}
+
+{% block td_for %}
+    <td>{{ field.estudianteId.carneIdentidad }}</td>
+    <td>{{ field.estudianteId.nombre }}</td>
+    <td>{{ field.estudianteId.apellidos }}</td>
+    <td>{{ field.cohorteId.carreraTipoCursoId.carreraId }} {{ field.cohorteId.carreraTipoCursoId.tipoCursoId.siglas }}
+        ({{ field.cohorteId.carreraTipoCursoId.universidadId.siglas }})
+    </td>
+    <td>{{ field.fechaIngreso }}</td>
+{% endblock %}
+
+{% block boton_editar_url %}
+    {% url 'persona:estudiante_editar'  field.pk %}
+{% endblock %}
+
+{% block boton_eliminar_url %}
+    {% url 'persona:estudiante_eliminar'  field.pk %}
+{% endblock %}
+
+{% block boton_detalle_url %}
+    {% url 'persona:estudiante_detalle'  field.estudianteId.pk %}
+{% endblock %}
+
+{% block th_foot %}
+    <th>Carrera</th>
+    <th>Plan de estudio</th>
+    <th>Curso</th>
+    <th>Carrera</th>
+    <th>Fecha de ingreso</th>
+{% endblock %}

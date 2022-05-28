@@ -1,0 +1,15 @@
+{% if object_list and not criterio %}
+    Mostrando todos los registros
+{% else %}
+    {% if object_list %}
+        Resultados de la búsqueda para: "{{ criterio }}".
+    {% else %}
+        La búsqueda: "{{ criterio }}" no generó ningún resultado.
+    {% endif %}
+{% endif %}
+
+{% if object.criterio and not object_list %}
+    <p> La búsqueda: "{{ criterio }}" no generó ningún resultado.</p>
+{% else %}
+    <p> Escriba su consulta de búsqueda en el cuadro "Buscar" y presione Enter.</p>
+{% endif %}

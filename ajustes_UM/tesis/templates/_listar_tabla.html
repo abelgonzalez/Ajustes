@@ -1,0 +1,82 @@
+<div style="visibility: hidden;" class="dataTables_processing" id="dataTables-1_processing">Procesando...</div>
+<br/>
+{% if object_list %}
+    <table aria-describedby="dataTables-1_info" class="table striped hovered dataTable"
+           id="dataTables-1">
+        <thead>
+        <tr role="row">
+            {% block th_head %}
+                <th>Nombre</th>
+                <th>Cantidad de períodos</th>
+                <th>Comentarios</th>
+            {% endblock %}
+            {% if acciones_visible %}
+                <th>Acciones</th>
+            {% endif %}
+            <th>Detalles</th>
+        </tr>
+        </thead>
+
+        <tbody role="alert" aria-live="polite" aria-relevant="all">
+        {% for foo in object_list %}
+            <tr class="odd gradeX text-center">
+            {% block td_for %}
+                <td><a href={{ foo.get_absolute_url }}>{{ field.nombre }}</a></td>
+                <td>{{ foo.cantidadPeriodos }}</td>
+                <td>{{ foo.comentarios }}</td>
+            {% endblock %}
+            {% if acciones_visible %}
+                <td>
+
+                    {% if acciones_editar %}
+                        <button class="button success">
+                            <i class="icon-share"></i>
+                            <a href="
+                            {% block boton_editar_url %}
+                            {# {% url 'planEstudio:plan_estudio_actualizar'  field.pk %}  #}
+                            {% endblock %}
+                            ">Editar</a>
+                        </button>
+                    {% endif %}
+
+                    {% if acciones_eliminar %}
+                        <button class="button danger">
+                            <i class="icon-remove"></i>
+                            <a href="
+                                {% block boton_eliminar_url %}
+                                {# {% url 'planEstudio:plan_estudio_eliminar'  field.pk %}#}
+                                {% endblock %}
+                                ">Eliminar</a>
+                        </button>
+                    {% endif %}
+
+                </td>
+            {% endif %}
+            <button class="button warning">
+                <i class="icon-glasses-2"></i>
+                <a href="
+                {% block boton_detalle_url %}
+                {# {% url 'planEstudio:cohorte_detalle'  foo.pk %}#}
+                {% endblock %}
+                ">Ver</a>
+            </button>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            {% block th_foot %}
+                <th>Nombre</th>
+                <th>Cantidad de períodos</th>
+                <th>Comentarios</th>
+            {% endblock %}
+            {% if acciones_visible %}
+                <th>Acciones</th>
+            {% endif %}
+            <th>Detalles</th>
+        </tr>
+        </tfoot>
+    </table>
+{% else %}
+    <br/>
+    <h3 class="text-center">No hay datos para mostrar</h3>
+{% endif %}

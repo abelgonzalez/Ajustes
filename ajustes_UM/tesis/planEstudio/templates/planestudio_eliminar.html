@@ -1,0 +1,20 @@
+{% extends '_eliminar.html' %}
+{% block breadcrumbs %}
+    <li><a href="{% url 'planEstudio:plan_estudio_listar' %}">Plan de Estudio</a></li>
+    <li class="active"><a
+            href="{% url 'planEstudio:plan_estudio_eliminar' object.pk %}">Eliminar {{ object.nombre }}</a></li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Plan de estudio
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block eliminar_url %}
+    {% url 'planEstudio:plan_estudio_eliminar' object.pk %}
+{% endblock %}
+
+{% block cancelar_url %}
+    {% url 'planEstudio:plan_estudio_listar' %}
+{% endblock %}

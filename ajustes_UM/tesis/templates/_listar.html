@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% block breadcrumbs %}
+    {#    <li class="active"><a href="{% url 'planEstudio:plan_estudio_listar' %}">Plan de Estudio</a></li>#}
+{% endblock %}
+{% block body_container_nombre %}
+    Dónde estás?
+{% endblock %}
+{% block body_container_descripcion %}{% endblock %}
+
+{% block body_container %}
+    <div id="dataTables-1_wrapper" class="dataTables_wrapper" role="grid">
+        {% if nuevo_visible %}
+            <div id="dataTables-1_length" class="dataTables_length ">
+                <label>
+                    <button class="button primary "><i class="icon-new"></i><a href="
+                        {% block boton_nuevo_url %}
+                        {#{% url 'planEstudio:plan_estudio_nuevo' %}#}
+                        {% endblock %}">Nuevo</a>
+                    </button>
+                </label>
+            </div>
+        {% endif %}
+
+        {#        <div class="dataTables_filter" id="dataTables-1_options">#}
+        {#            <div class="button-dropdown">#}
+        {#                <button class="dropdown-toggle info">Opciones</button>#}
+        {#                <ul class="dropdown-menu place-right" data-role="dropdown">#}
+        {#                    <li class="inverse"><a href="#">Exportar a PDF</a></li>#}
+        {#                </ul>#}
+        {#            </div>#}
+        {#        </div>#}
+        {% block bucarr %}
+            <div class="dataTables_filter" id="dataTables-1_filter">
+                <form class="input-append" method="GET" action="
+                  {% block buscar_url %}
+                   {# {% url 'planEstudio:plan_estudio_busqueda' %}#}
+                  {% endblock %} ">
+                    <div class="input-control text">
+                        <input id="q" name="q" title="Buscar" class="span2" type="text"
+                               placeholder="Buscar">
+                        <button class="btn-search" type="submit"></button>
+                    </div>
+                </form>
+                <span class="element-divider"></span>
+            </div>
+        {% endblock %}
+
+
+        <div style="visibility: hidden;" class="dataTables_processing" id="dataTables-1_processing">Procesando...</div>
+
+        <span class="element-divider"></span>
+        {% if object_list %}
+            <table aria-describedby="dataTables-1_info" class="table striped hovered dataTable" id="dataTables-1">
+                <thead>
+                <tr role="row">
+                    {% block th_head %}
+                        <th>Nombre</th>
+                        <th>Cantidad de períodos</th>
+                        <th>Comentarios</th>
+                    {% endblock %}
+                    {% if acciones_visible %}
+                        <th>Acciones</th>
+                    {% endif %}
+                    <th>Detalles</th>
+                </tr>
+                </thead>
+
+                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                {% for field in object_list %}
+                    <tr class="odd gradeX text-center">
+                    {% block td_for %}
+                        <td><a href={{ field.get_absolute_url }}>{{ field.nombre }}</a></td>
+                        <td>{{ field.cantidadPeriodos }}</td>
+                        <td>{{ field.comentarios }}</td>
+                    {% endblock %}
+                    {% if acciones_visible %}
+                        <td>
+                            {% if acciones_editar %}
+                                <button class="button success"><i class="icon-pencil"></i><a href="
+                            {% block boton_editar_url %}
+                            {#{% url 'planEstudio:plan_estudio_actualizar'  field.pk %}#}
+                            {% endblock %}">Editar</a>
+                                </button>
+                            {% endif %}
+
+                            {% if acciones_eliminar %}
+                                <button class="button danger"><i class="icon-remove"></i> <a href="
+                                {% block boton_eliminar_url %}
+                                {# {% url 'planEstudio:plan_estudio_eliminar'  field.pk %}#}
+                                {% endblock %}">Eliminar</a>
+                                </button>
+                            {% endif %}
+                        </td>
+                    {% endif %}
+                    <td>
+                        <button class="button warning"><i class="icon-glasses-2"></i> <a href="
+                             {% block boton_detalle_url %}
+                             {#{% url 'planEstudio:cohorte_detalle'  foo.pk %}#}
+                            {% endblock %}">Ver</a>
+                        </button>
+                    </td>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                    {% block th_foot %}
+                        <th>Nombre</th>
+                        <th>Cantidad de períodos</th>
+                        <th>Comentarios</th>
+                    {% endblock %}
+                    {% if acciones_visible %}
+                        <th>Acciones</th>
+                    {% endif %}
+                    <th>Detalles</th>
+                </tr>
+                </tfoot>
+            </table>
+            {% include "paginador.html" %}
+        {% else %}
+            <br/>
+            <h3 class="text-center">No hay datos para mostrar</h3>
+        {% endif %}
+    </div>
+{% endblock %}

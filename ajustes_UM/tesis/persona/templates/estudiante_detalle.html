@@ -1,0 +1,21 @@
+{% extends '_detalle.html' %}
+{% block breadcrumbs %}
+    <li><a href="{% url 'persona:estudiante_listar' %}">Expedientes estudiantiles</a></li>
+    <li><a href="{% url 'persona:estudiante_detalle'  object.pk %}">{{ object.nombre }}</a></li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Expediente estudiantil de {{ object.nombre }} {{ object.apellidos }}
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block datos %}
+    {% include '_datos_estudiante.html' %}
+{% endblock %}
+
+{% block algo_mas %}
+    <br/>
+    <br/>
+    {% include '_datos_estudiante_vencidas.html' %}
+{% endblock %}

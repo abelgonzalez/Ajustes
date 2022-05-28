@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block body_header %}{% endblock %}
+
+{% block body_container_ref %}{% endblock %}
+{% block breadcrumbs_completo %}{% endblock %}
+{% block body_container %}
+    <div class="grid fluid"> {% comment %}overlay-{% endcomment %}
+        <div class="row ">
+            <div class="example span6 offset3" style="padding: 30px 10px 10px;">
+                <form class="user-input" method="post" action="{% url 'autenticar' %}" id="autenticarForm">
+                    {% csrf_token %}
+                    <fieldset>
+                        <legend class="text-center"><p class="subheader">Autenticación de usuario</p> <small>Ajustes - UM</small></legend>
+                        {% if error %}
+                            <div class="balloon top" style="padding: 10px 10px;">
+                                <p class="text-alert"> Por favor introduce el nombre de usuario y la clave
+                                    correctos de tu cuenta de personal.
+                                    Observa que los campos pueden ser sensibles a mayúsculas.</p>
+                            </div>
+                        {% endif %}
+                        <div data-role="input-control" class="input-control text">
+                            <input type="text" placeholder="Usuario" name="username">
+                            <button tabindex="-1" class="btn-clear" type="button"></button>
+                        </div>
+                        <br/>
+
+                        <div data-role="input-control" class="input-control password">
+                            <input type="password" autofocus="" placeholder="Contraseña" name="password">
+                            <button tabindex="-1" class="btn-reveal" type="button"></button>
+                        </div>
+                        {% comment %} <div>
+                            <div class="clearfix text-center">
+                                <div data-role="input-control"
+                                     class="input-control radio default-style inline-block">
+                                    <label class="inline-block">
+                                        <input type="radio" checked="" name="r2">
+                                        <span class="check"></span>
+                                        Autenticarse local
+                                    </label>
+                                    &nbsp;
+                                    <label class="inline-block">
+                                        <input type="radio" name="r2">
+                                        <span class="check"></span>
+                                        Autenticarse por LDAP
+                                    </label>
+                                </div>
+                            </div>
+                        </div>{% endcomment %}
+                        <div class="text-center">
+                            <input type="submit" class="button primary" value="Iniciar sesión">
+                            &nbsp;
+                            {% comment %} <input type="reset" value="Limpiar campos">
+                            <div style="margin-top: 20px">
+                            </div>{% endcomment %}
+                            <button class="button success">
+                                <a href="{% url 'inicio' %}">Entrar como invitado</a>
+                            </button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}{% endblock %}
+

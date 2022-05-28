@@ -1,0 +1,110 @@
+{% extends '_nuevo.html' %}
+{% block breadcrumbs %}
+    <li><a href="{% url 'ajustes:ajusteestudiante_listar' %}">Ajustes</a></li>
+    <li><a href="{% url 'ajustes:ajusteestudiante_editar_asistente' carreraestudiante.pk %} ">Editar</a></li>
+    <li class="active"><a href="{% url 'ajustes:ajusteestudiante_nuevo_asistente'  carreraestudiante.pk %}">Ajuste a
+        plan para
+        <strong>{{ carreraestudiante.estudianteId.nombre }} {{ carreraestudiante.estudianteId.apellidos }}</strong></a>
+    </li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Ajustes
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block estilos_personalizados %}
+    <script src="{{ STATIC_URL }}js/jquery.formset.min.js"></script>
+{% endblock %}
+
+{% block body_container %}
+    <div class="tab-control" data-role="tab-control">
+        <ul class="tabs">
+            <li id="tab1" class="active"><a href="#_page_1">Datos del ajuste</a></li>
+            <li id="tab2" class="disabled"><a href="#_page_2">Cohorte a la que aspira</a></li>
+            <li id="tab3" class="disabled"><a href="#_page_3">Ajuste de asignaturas</a></li>
+            <li id="tab4" class="disabled"><a href="#_page_4">Resultados</a></li>
+        </ul>
+        <div class="frames">
+            <div style="display: block;" class="frame" id="_page_1">
+                {% include 'ajusteestudiante_asistente1_datos_ajuste.html' %}
+                <br/>
+                <br/>
+
+                <div class="text-center">
+                    <button id="siguiente_datos_ajuste" class="button primary">
+                        <a>Siguiente</a>
+                        <i class="icon-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div style="display: none;" class="frame" id="_page_2">
+                {% include 'ajusteestudiante_asistente2_cohorte_propuesto.html' %}
+                <br/>
+                <br/>
+
+                <div class="text-center">
+                    <button id="anterior_cohorte_ajuste" class="button primary">
+                        <i class="icon-arrow-left"></i>
+                        <a>Anterior</a>
+                    </button>
+                    <button id="siguiente_cohorte_ajuste" class="button primary">
+                        <a>Siguiente</a>
+                        <i class="icon-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            <div style="display: none;" class="frame" id="_page_3">
+                {% include 'ajusteestudiante_asistente3_ajuste_asignaturas.html' %}
+                <br/>
+                <br/>
+
+                <div class="text-center">
+                    <button id="anterior_asign_vencidas_ajuste" class="button primary">
+                        <i class="icon-arrow-left"></i>
+                        <a>Anterior</a>
+                    </button>
+                    <button id="siguiente_asign_vencidas_ajuste" class="button primary">
+                        <a>Siguiente</a>
+                        <i class="icon-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div style="display: none;" class="frame" id="_page_4">
+                {% include 'ajusteestudiante_asistente4_confirmar.html' %}
+                <br/>
+                <br/>
+
+                <div class="text-center">
+                    <button class="command-button primary">
+                        <a id="guardar_cambios_ajuste_editar" href="{% url 'ajustes:ajuste_editar_guardar' 1 %}"> <i
+                                class=" icon-checkmark on-left"></i>
+                            Finalizar
+                            <small>Guardar cambios</small>
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+
+    <p class="text-center">
+        <button class="button primary">
+            <i class="icon-arrow-left-5"></i>
+            <a href="{% url 'ajustes:ajusteestudiante_listar' %}">No, cancelar</a>
+        </button>
+    </p>
+
+{% endblock %}
+
+{% block KO_Files %}
+    <script src="{{ STATIC_URL }}js/metro/metro-listview.js"></script>
+    <script src="{{ STATIC_URL }}js/metro/metro-tab-control.js"></script>
+    <script src="{{ STATIC_URL }}js/myJS.js"></script>
+    <script src="{{ STATIC_URL }}js/koFiles/comparar.js"></script>
+    <script src="{{ STATIC_URL }}js/koFiles/ajuste_asistente.js"></script>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'estudiante_listar.html' %}
+{% block breadcrumbs %}
+    <li><a href="{% url 'persona:estudiante_listar' %}">Expedientes estudiantiles</a></li>
+    <li><a href="{% url 'persona:estudiante_busqueda' %}">Búsqueda</a></li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    {% include '_buscar.html' %}
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block boton_nuevo_url %}
+    {% url 'persona:estudiante_nuevo' %}
+{% endblock %}
+
+{% block buscar_url %}
+    {% url 'persona:estudiante_busqueda' %}
+{% endblock %}

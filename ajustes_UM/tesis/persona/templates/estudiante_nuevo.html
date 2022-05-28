@@ -1,0 +1,104 @@
+{% extends '_nuevo.html' %}
+{% block breadcrumbs %}
+    <li><a href="{% url 'persona:estudiante_listar' %}">Expedientes estudiantiles</a></li>
+    <li class="active"><a href="{% url 'persona:estudiante_nuevo' %}">Nuevo</a></li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Expedientes estudiantiles
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block estilos_personalizados %}
+    <script src="{{ STATIC_URL }}js/jquery.formset.min.js"></script>
+{% endblock %}
+
+{% block body_container %}
+    <div class="tab-control" data-role="tab-control">
+        <ul class="tabs">
+            <li id="tab1" class="active"><a href="#_page_1">Datos del estudiante</a></li>
+            <li id="tab2" class="disabled"><a href="#_page_2">Cohorte de origen</a></li>
+            <li id="tab3" class="disabled"><a href="#_page_3">Asignaturas vencidas</a></li>
+            <li id="tab4" class="disabled"><a href="#_page_4">Resultados</a></li>
+        </ul>
+        <div class="frames">
+            <div style="display: block;" class="frame" id="_page_1">
+                {% include 'asistente_estudiante1_datosEstudiante.html' %}
+                <br/>
+                <br/>
+
+                <div class="text-center">
+                    <button id="siguiente_estudiante" class="button primary">
+                        <a>Siguiente</a>
+                        <i class="icon-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div style="display: none;" class="frame" id="_page_2">
+                {% include 'asistente_estudiante2_cohorteOrigen.html' %}
+                <br/>
+                <br/>
+
+                <div class="text-center">
+                    <button id="anterior_cohorte" class="button primary">
+                        <i class="icon-arrow-left"></i>
+                        <a>Anterior</a>
+                    </button>
+                    <button id="siguiente_cohorte" class="button primary">
+                        <a>Siguiente</a>
+                        <i class="icon-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div style="display: none;" class="frame" id="_page_3">
+                {% include 'asistente_estudiante3_asignaturasVencidas.html' %}
+                <br/>
+                <br/>
+
+                <div class="text-center">
+                    <button id="anterior_asign_vencidas" class="button primary">
+                        <i class="icon-arrow-left"></i>
+                        <a>Anterior</a>
+                    </button>
+                    <button id="siguiente_asign_vencidas" class="button primary">
+                        <a>Siguiente</a>
+                        <i class="icon-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div style="display: none;" class="frame" id="_page_4">
+                {% include 'asistente_estudiante4_confirmar.html' %}
+                <br/>
+                <br/>
+
+                <div class="text-center">
+                    <button id="guardar_cambios_estudiante" class="command-button primary">
+                        <a href="{% url 'persona:expediente_guardar' %}"> <i class=" icon-checkmark on-left"></i>
+                            Finalizar
+                            <small>Guardar cambios</small>
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <button class="button primary">
+            <i class="icon-arrow-left-5"></i>
+            <a href="{% url 'persona:estudiante_listar' %}">No, cancelar</a>
+        </button>
+    </div>
+{% endblock %}
+
+{% block KO_Files %}
+    <script src="{{ STATIC_URL }}js/metro/metro-listview.js"></script>
+    <script src="{{ STATIC_URL }}js/metro/metro-tab-control.js"></script>
+    <script src="{{ STATIC_URL }}js/myJS.js"></script>
+    <script src="{{ STATIC_URL }}js/koFiles/comparar.js"></script>
+    <script src="{{ STATIC_URL }}js/koFiles/persona_asistente.js"></script>
+{% endblock %}

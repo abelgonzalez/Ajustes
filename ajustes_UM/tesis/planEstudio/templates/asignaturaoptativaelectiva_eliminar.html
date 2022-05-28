@@ -1,0 +1,28 @@
+{% extends '_eliminar.html' %}
+{% block breadcrumbs %}
+    <li><a href="{% url 'planEstudio:plan_estudio_listar' %}">Plan de Estudio</a></li>
+    <li><a href="{% url 'planEstudio:plan_estudio_detalle'  planId.pk %}">{{ planId.nombre }}</a></li>
+    <li><a
+            href="{% url 'planEstudio:cohorte_detalle' cohorteId.pk %}">{{ cohorteId.carreraTipoCursoId.carreraId.nombre }} {{ cohorteId.carreraTipoCursoId.tipoCursoId.siglas }} {{ cohorteId.carreraTipoCursoId.universidadId.siglas }} {{ cohorteId.cursoId.nombre }}</a>
+    </li>
+    <li>
+        <a href="{% url 'planEstudio:asignaturacohorte_detalle' asignaturaCohorteId.pk %}">{{ asignaturaCohorteId.asignaturaId }}</a>
+    </li>
+    <li><a href="{% url 'planEstudio:asignaturaoptativaelectiva_detalle' object.pk %}">{{ object.asignaturaId }}</a>
+    <li><a href="{% url 'planEstudio:asignaturaoptativaelectiva_eliminar' object.pk %}">Eliminar</a>
+    </li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Asignatura Optativa / Electiva
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block eliminar_url %}
+    {% url 'planEstudio:asignaturaoptativaelectiva_eliminar' object.pk %}
+{% endblock %}
+
+{% block cancelar_url %}
+    {% url 'planEstudio:asignaturacohorte_detalle' asignaturaCohorteId.pk %}
+{% endblock %}

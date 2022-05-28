@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load humanize %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="product" content="Ajustes - UM">
+    <meta name="description" content="Aplicación web para el apoyo a los ajustes de plan de estudios">
+    <meta name="author" content="Abel González Mondéjar, Matanzas, Cuba">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    {% block estilos %}
+        <link href="{{ STATIC_URL }}css/metro-bootstrap.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}css/metro-bootstrap-responsive.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}css/docs.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}js/prettify/prettify.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}js/holder/holder.js">
+        <script src="{{ STATIC_URL }}js/jquery/jquery.min.js"></script>
+        <script src="{{ STATIC_URL }}js/jquery/jquery.widget.min.js"></script>
+        <script src="{{ STATIC_URL }}js/jquery/jquery.mousewheel.js"></script>
+        <script src="{{ STATIC_URL }}js/prettify/prettify.js"></script>
+        <script src="{{ STATIC_URL }}js/load-metro.js"></script>
+        <script src="{{ STATIC_URL }}js/docs.js"></script>
+    {% endblock %}
+    {% block estilos_personalizados %}
+
+    {% endblock %}
+    <title>Ajustes - UM</title>
+
+</head>
+{% block body_full %}
+    <body class="metro" style="background-color: #efeae3">
+
+
+    {% block body_header %}
+        {% include "header.html" %}
+    {% endblock %}
+
+
+    <div class="container">
+        {% block breadcrumbs_completo %}
+            <nav class="breadcrumbs small">
+                <ul>
+                    <li><a href="{% url 'inicio' %}"><i class="icon-home"></i></a></li>
+                    {% block breadcrumbs %}
+                        <li><a href="#">Library</a></li>
+                        <li class="active fg-active-black"><a href="#">Data</a></li>
+                    {% endblock %}
+                </ul>
+            </nav>
+        {% endblock %}
+        {% block body_container_ref %}
+            <h2>
+                <a href="../" class="history-back"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
+                {% block body_container_nombre %}
+                    Nombre del sitio
+                {% endblock %}
+            </h2>
+            {% block body_container_descripcion %}
+                <h3 id="_doctype">Algo más que quieras agregar</h3>
+            {% endblock %}
+        {% endblock %}
+
+        <div class="example grid">
+            {% block body_container %}
+            {% endblock %}
+        </div>
+    </div>
+    {% block scripts %}
+        <script src="{{ STATIC_URL }}js/jquery/jquery.min.js"></script>
+        <script src="{{ STATIC_URL }}js/jquery/jquery.widget.min.js"></script>
+        <script src="{{ STATIC_URL }}js/load-metro.js"></script>
+        <script src="{{ STATIC_URL }}js/metro.min.js"></script>
+        <script src="{{ STATIC_URL }}js/jquery/jquery.mousewheel.js"></script>
+        <script src="{{ STATIC_URL }}js/prettify/prettify.js"></script>
+        <script src="{{ STATIC_URL }}js/docs.js"></script>
+        <script src="{{ STATIC_URL }}js/myJS.js"></script>
+        {#        <script src="{{ STATIC_URL }}js/knockout-2.3.0.js"></script>#}
+    {% endblock %}
+
+    {% block KO_Files %}
+    {% endblock %}
+
+    {% include "footer.html" %}
+
+    </body>
+
+{% endblock %}
+</html>

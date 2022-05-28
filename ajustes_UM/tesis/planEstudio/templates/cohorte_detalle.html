@@ -1,0 +1,137 @@
+{% extends '_detalle.html' %}
+{% block breadcrumbs %}
+    <li><a href="{% url 'planEstudio:plan_estudio_listar' %}">Plan de Estudio</a></li>
+    <li><a href="{% url 'planEstudio:plan_estudio_detalle'  plan.pk %}">{{ plan.nombre }}</a></li>
+    <li class="active"><a
+            href="{% url 'planEstudio:cohorte_detalle' object.pk %}">{{ object.carreraTipoCursoId.carreraId }} {{ object.carreraTipoCursoId.tipoCursoId.siglas }} {{ object.carreraTipoCursoId.universidadId.siglas }} {{ object.cursoId }}</a>
+    </li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Cohorte
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block datos %}
+    <dl class="horizontal">
+        <dt><strong>Carrera:</strong></dt>
+        <dd>{{ object.carreraTipoCursoId }}</dd>
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Plan de estudio:</strong></dt>
+        <dd>{{ object.planEstudioId }}</dd>
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Curso:</strong></dt>
+        <dd>{{ object.cursoId }}</dd>
+    </dl>
+{% endblock %}
+
+{% block algo_mas %}
+    <div id="dataTables-1_length" class="dataTables_length ">
+        {% if nuevo_visible %}
+            <label>
+                <button class="button primary ">
+                    <i class="icon-new"></i>
+                    <a href="{% url 'planEstudio:asignaturacohorte_nuevo' object.pk %} ">Nueva asignatura</a>
+                </button>
+            </label>
+        {% endif %}
+    </div>
+    {% if listAsigCohorte %}
+        {% for  a in listAsigCohorte %}
+            {% ifchanged a.anhoSemestreId %}
+                {% ifchanged a.anhoSemestreId.anhoId.nombre %}
+                    <p></p>
+                    <h2 class="text-center"> *** {{ a.anhoSemestreId.anhoId.nombre }} año ***</h2>
+                {% endifchanged %}
+                <div class="listview-outlook" data-role="listview">
+                    <div class="list-group">
+                        <a href="" class="group-title">
+                            <h5 class="text-center">{{ a.anhoSemestreId.semestreId }} semestre</h5></a>
+
+                        <div style="display: block;">
+                            <a id="listmark1" class="list marked">
+                                <div class="list-content">
+                                    <span class="list-title">
+                                        <div class="span5"
+                                             onclick="VerAsignaturaCohorte({{ a.pk }})"> {{ a.asignaturaId }}</div>
+                                        {% if acciones_visible %}
+                                            <div class="text-right">
+                                                {% if acciones_editar %}
+                                                    <button id="asign tura11" class="button success"
+                                                            onmouseover="OcultarListarAsignaturaCohorte()"
+                                                            onclick="EditarAsignaturaCohorte({{ a.pk }})">
+                                                        Editar
+                                                        <i class="icon-share"></i>
+                                                    </button>
+                                                {% endif %}
+                                                {% if acciones_eliminar %}
+                                                    <button class="button danger"
+                                                            onmouseover="OcultarListarAsignaturaCohorte()"
+                                                            onclick="EliminarAsignaturaCohorte({{ a.pk }})">
+                                                        <i class="icon-remove"></i>
+                                                        Eliminar
+                                                    </button>
+                                                {% endif %}
+                                            </div>
+                                        {% endif %}
+
+                                    </span>
+                                    {% for c in asig_opt_elec1 %}
+                                        {% if a.pk == c.asignaturaCohorteId_id %}
+                                            <span class="list-remark ">{{ c.asignaturaId }}</span>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="listview-outlook" data-role="listview">
+                    <div style="display: block;">
+                        <a class="list marked" href="{% url 'planEstudio:asignaturacohorte_detalle' a.pk %}">
+                            <div class="list-content">
+                                <span class="list-title">
+                                   <div class="span5"
+                                        onclick="VerAsignaturaCohorte({{ a.pk }})"> {{ a.asignaturaId }}</div>
+                                    {% if acciones_visible %}
+                                        <div class="text-right">
+                                            {% if acciones_editar %}
+                                                <button id="asign tura11" class="button success"
+                                                        onmouseover="OcultarListarAsignaturaCohorte()"
+                                                        onclick="EditarAsignaturaCohorte({{ a.pk }})">
+                                                    Editar
+                                                    <i class="icon-share"></i>
+                                                </button>
+                                            {% endif %}
+                                            {% if acciones_eliminar %}
+                                                <button class="button danger"
+                                                        onmouseover="OcultarListarAsignaturaCohorte()"
+                                                        onclick="EliminarAsignaturaCohorte({{ a.pk }})">
+                                                    <i class="icon-remove"></i>
+                                                    Eliminar
+                                                </button>
+                                            {% endif %}
+                                        </div>
+                                    {% endif %}
+                                </span>
+                                {% for c in asig_opt_elec1 %}
+                                    {% if a.pk == c.asignaturaCohorteId_id %}
+                                        <span class="list-remark ">{{ c.asignaturaId }}</span>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% endifchanged %}
+        {% endfor %}
+    {% else %}
+        <br/>
+        <h3 class="text-center">Este cohorte no tiene asignaturas.</h3>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,122 @@
+<div class="fieldWrapper">
+    <p class="text-alert"></p>
+    <dl class="horizontal ">
+        <dt><strong><label for="carneIdentidad">CI:</label></strong></dt>
+        <dd><input id="carneIdentidad" maxlength="11" name="carneIdentidad"
+                   required="true" type="number" value="{{ estudiante.carneIdentidad }}"></dd>
+    </dl>
+</div>
+<div class=" fieldWrapper">
+    <p class="text-alert"></p>
+    <dl class="horizontal ">
+        <dt><strong><label for="id_nombre">Nombre:</label></strong></dt>
+        <dd><input id="id_nombre" maxlength="50" name="nombre" type="text" value="{{ estudiante.nombre }}"></dd>
+    </dl>
+</div>
+<div class="fieldWrapper">
+    <p class="text-alert"></p>
+    <dl class="horizontal ">
+        <dt><strong><label for="id_apellidos">Apellidos:</label></strong></dt>
+        <dd><input id="id_apellidos" maxlength="80" name="apellidos" type="text" value="{{ estudiante.apellidos }}">
+        </dd>
+    </dl>
+</div>
+<div class="fieldWrapper">
+    <p class="text-alert"></p>
+    <dl class="horizontal ">
+        <dt><strong><label for="id_direccion">Dirección:</label></strong></dt>
+        <dd><textarea cols="40" id="id_direccion" maxlength="100" name="direccion"
+                      rows="10">{{ estudiante.direccion }}</textarea></dd>
+    </dl>
+</div>
+<div class="fieldWrapper">
+    <p class="text-alert"></p>
+    <dl class="horizontal ">
+        <dt><strong><label for="id_ubicacionId">Ubicación:</label></strong></dt>
+        <dd><select id="id_ubicacionId" name="ubicacionId">
+            {% for a in ubicacion %}
+                <option value="{{ a.pk }}"
+                        {% if a.pk == ubicacion_selected %}
+                            {{ 'selected' }}
+                        {% endif %}
+                        >{{ a.municipioId.nombre }}, {{ a.provinciaId.nombre }}, {{ a.paisId.nombre }}</option>
+            {% endfor %}
+        </select></dd>
+    </dl>
+</div>
+<div class="fieldWrapper">
+    <p class="text-alert"></p>
+    <dl class="horizontal ">
+        <dt><strong><label for="id_nacionalidadId">Nacionalidad:</label></strong></dt>
+        <dd><select id="id_nacionalidadId" name="nacionalidadId">
+            {% for a in nacionalidad %}
+                <option value="{{ a.pk }}"
+                        {% if a.pk == nacionalidad_selected %}
+                            {{ 'selected' }}
+                        {% endif %}
+                        >{{ a.nombre }}</option>
+            {% endfor %}
+        </select></dd>
+    </dl>
+</div>
+<div class="fieldWrapper">
+    <p class="text-alert"></p>
+    <dl class="horizontal ">
+        <dt><strong><label for="id_sexoId">Sexo:</label></strong></dt>
+        <dd><select id="id_sexoId" name="sexoId">
+            {% for a in sexo %}
+                <option value="{{ a.pk }}"
+                        {% if a.pk == sexo_selected %}
+                            {{ 'selected' }}
+                        {% endif %}
+                        >{{ a.nombre }}</option>
+            {% endfor %}
+        </select></dd>
+    </dl>
+</div>
+<div class="fieldWrapper">
+    <p class="text-alert"></p>
+    <dl class="horizontal ">
+        <dt><strong><label for="id_etniaId">Etnia:</label></strong></dt>
+        <dd><select id="id_etniaId" name="etniaId">
+            {% for a in etnia %}
+                <option value="{{ a.pk }}"
+                        {% if a.pk == etnia_selected %}
+                            {{ 'selected' }}
+                        {% endif %}
+                        >{{ a.nombre }}</option>
+            {% endfor %}
+        </select></dd>
+    </dl>
+</div>
+<div class="fieldWrapper">
+    <p class="text-alert"></p>
+    <dl class="horizontal ">
+        <dt><strong><label for="id_correoElectronico">E-mail:</label></strong></dt>
+        <dd><input id="id_correoElectronico" maxlength="50" name="correoElectronico" type="email"
+                   value="{{ estudiante.correoElectronico }}">
+        </dd>
+    </dl>
+</div>
+<div class="fieldWrapper">
+    <p class="text-alert"></p>
+    <dl class="horizontal ">
+        <dt><strong><label for="fechaIngESup">Ingresó a la ES:</label></strong></dt>
+        <dd>
+            <div style="width: 200px" class="input-control text" data-role="datepicker"
+                 data-date="2015-03-28" data-format="d/m/yyyy" data-position="top" data-effect="fade"
+                 data-locale="es" data-weekStart="1">
+                <input id="fechaIngESup" type="text" value="{{ estudiante.fechaIngESup }}">
+                <button class="btn-date"></button>
+            </div>
+        </dd>
+    </dl>
+</div>
+<div class="fieldWrapper">
+    <p class="text-alert"></p>
+    <dl class="horizontal ">
+        <dt><strong><label for="id_indiceAcademico">Indice académico:</label></strong></dt>
+        <dd><input id="id_indiceAcademico" name="indiceAcademico" type="text" value="{{ estudiante.indiceAcademico }}">
+        </dd>
+    </dl>
+</div>

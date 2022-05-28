@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block breadcrumbs %}
+    {% comment %} <li><a href="{% url 'planEstudio:inicio' %}">Plan de Estudio</a></li>
+    <li class="active"><a href="{% url 'planEstudio:nuevo' %}">Nuevo</a></li>{% endcomment %}
+{% endblock %}
+
+{% block body_container_nombre %}
+    Ubicación actual
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block body_container %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {% if form.errors %}
+            <div class="balloon top" style="padding: 10px 10px;">
+                <p class="text-alert"> {{ form.errors }}</p>
+            </div>
+        {% endif %}
+        {% for field in form %}
+            <div class="fieldWrapper">
+                <p class="text-alert"></p>
+                <dl class="horizontal">
+                    <dt><strong>{{ field.label_tag }}</strong></dt>
+                    <dd>{{ field }}</dd>
+                </dl>
+            </div>
+        {% endfor %}
+        <p class="text-center">
+            {% block boton_insertar_guardar_cambios %}
+                <input class="primary" type="submit" value="Insertar"/>
+            {% endblock %}
+        </p>
+    </form>
+    <p class="text-center">
+        <button class="button primary">
+            <i class="icon-arrow-left-5"></i>
+            <a href="
+            {% block cancelar_url %}
+            {# {% url 'planEstudio:plan_estudio_nuevo' %}#}
+            {% endblock %}">No, cancelar</a>
+        </button>
+    </p>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

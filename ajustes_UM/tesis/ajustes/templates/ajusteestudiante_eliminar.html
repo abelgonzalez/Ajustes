@@ -1,0 +1,16 @@
+{% extends '_eliminar.html' %}
+{% block tituloSitio %} Ajuste Estudiante {% endblock %}{
+{% block breadcrumbs %}
+    <li><a href="{% url 'ajustes:ajusteestudiante_listar' %}">Ajuste Estudiante</a></li>
+    <li class="active"><a href="{% url 'ajustes:ajusteestudiante_eliminar' object.pk%}">Eliminar {{ object.nombre }}</a></li>
+{% endblock %}
+{% block body_container_nombre %}
+    Ajuste Estudiante
+{% endblock %}
+{% block body_container_descripcion %}{% endblock %}
+
+
+{% block objeto_a_eliminar_url %}
+    {#    {% url 'planEstudio:plan_estudio_eliminar' object.pk %}#}
+    {{ object.eliminar }}
+{% endblock %}

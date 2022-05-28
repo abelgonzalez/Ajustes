@@ -1,0 +1,155 @@
+{% extends '_detalle.html' %}
+{% block breadcrumbs %}
+    <li><a href="{% url 'planEstudio:plan_estudio_listar' %}">Plan de Estudio</a></li>
+    <li><a href="{% url 'planEstudio:plan_estudio_detalle'  planId.pk %}">{{ planId.nombre }}</a></li>
+    <li><a
+            href="{% url 'planEstudio:cohorte_detalle' cohorteId.pk %}">{{ cohorteId.carreraTipoCursoId.carreraId.nombre }} {{ cohorteId.carreraTipoCursoId.tipoCursoId.siglas }} {{ cohorteId.carreraTipoCursoId.universidadId.siglas }} {{ cohorteId.cursoId.nombre }}</a>
+    </li>
+    <li><a href="{% url 'planEstudio:asignaturacohorte_detalle' object.pk %}">{{ object.asignaturaId }}</a></li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Asignatura de Cohorte
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block datos %}
+    <dl class="horizontal">
+        <dt><strong>Asignatura:</strong></dt>
+        {% if object.asignaturaId %}
+            <dd>{{ object.asignaturaId }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Horas semanales:</strong></dt>
+        {% if object.cantidadHorasS %}
+            <dd>{{ object.cantidadHorasS }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Horas totales:</strong></dt>
+        {% if object.cantidadHorasT %}
+            <dd>{{ object.cantidadHorasT }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Tipo de asignatura:</strong></dt>
+        {% if object.tipoAsignaturaId %}
+            <dd>{{ object.tipoAsignaturaId }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Disciplina:</strong></dt>
+        {% if object.disciplinaId %}
+            <dd>{{ object.disciplinaId }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Currículo:</strong></dt>
+        {% if object.curriculoId %}
+            <dd>{{ object.curriculoId }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Evaluación:</strong></dt>
+        {% if object.tipoEvaluacionId %}
+            <dd>{{ object.tipoEvaluacionId }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Cohorte:</strong></dt>
+        {% if object.cohorteId %}
+            <dd>{{ object.cohorteId }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <dl class="horizontal">
+        <dt><strong>Comentarios:</strong></dt>
+        {% if object.comentariosId %}
+            <dd>{{ object.comentariosId }}</dd>
+        {% else %}
+            <dd><p class="text-muted">Sin especificar</p></dd>
+        {% endif %}
+    </dl>
+    <br/>
+{% endblock %}
+
+{% block algo_mas %}
+    {% if optativa_electiva %}
+        {% if nuevo_visible %}
+            <div id="dataTables-1_length" class="dataTables_length ">
+                <label>
+                    <button class="button primary ">
+                        <i class="icon-new"></i>
+                        <a href="{% url 'planEstudio:asignaturaoptativaelectiva_nuevo' object.pk %}">Nueva asignatura
+                            optativa/electiva</a>
+                    </button>
+                </label>
+            </div>
+        {% endif %}
+        {% if object_list %}
+            <table aria-describedby="dataTables-1_info" class="table striped hovered dataTable" id="dataTables-1">
+                <thead>
+                <tr role="row">
+                    <th>Nombre de la asignatura</th>
+                    {% if acciones_visible %}
+                        <th>Acciones</th>
+                    {% endif %}
+                    <th>Detalles</th>
+                </tr>
+                </thead>
+                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                {% for foo in object_list %}
+                    <tr class="odd gradeX text-center">
+                    {% block td_for %}
+                        <td>{{ foo.asignaturaId }}</td>
+                        {% if acciones_visible %}
+                            <td>
+                                {% if acciones_editar %}
+                                    <button class="button success">
+                                        <i class="icon-share"></i>
+                                        <a href="{% url 'planEstudio:asignaturaoptativaelectiva_editar' foo.pk %}">Editar</a>
+                                    </button>
+                                {% endif %}
+
+                                {% if acciones_eliminar %}
+                                    <button class="button danger">
+                                        <i class="icon-remove"></i>
+                                        <a href="{% url 'planEstudio:asignaturaoptativaelectiva_eliminar' foo.pk %}">Eliminar</a>
+                                    </button>
+                                {% endif %}
+                            </td>
+                        {% endif %}
+                    {% endblock %}
+                    <td>
+                        <button class="button warning"><i class="icon-glasses-2"></i> <a
+                                href="{% url 'planEstudio:asignaturaoptativaelectiva_detalle'  foo.pk %}">Ver</a>
+                        </button>
+                    </td>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                </tfoot>
+            </table>
+        {% else %}
+            <br/>
+            <h3 class="text-center">Esta optativa/electiva no tiene asignaturas.</h3>
+        {% endif %}
+    {% endif %}
+{% endblock %}

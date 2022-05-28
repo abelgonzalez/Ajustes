@@ -1,0 +1,43 @@
+<div class="accordion" data-role="accordion" data-closeany="true">
+    <div class="accordion-frame">
+        <a class="active heading" href="#"><h2 class="text-center">Asignaturas vencidas</h2></a>
+
+        <div style="display: none;" class="content clearfix">
+            <span class="element-divider"></span>
+            {% if asigvenc %}
+                <table aria-describedby="dataTables-1_info"
+                       class="table striped hovered dataTable"
+                       id="dataTables-1">
+                    <thead>
+                    <tr role="row">
+                        <th>Asignatura</th>
+                        <th>Año</th>
+                        <th>Semestre</th>
+                        <th>Cantidad de horas totales</th>
+                    </tr>
+                    </thead>
+                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                    {% for foo in asigvenc %}
+                        <tr class="odd gradeX text-center">
+                        <td>
+                            {{ foo.asignaturaId }}
+                        </td>
+                        <td>
+                            {{ foo.anhoSemestreId.anhoId.abreviatura }}
+                        </td>
+                        <td>
+                            {{ foo.anhoSemestreId.semestreId.abreviatura }}
+                        </td>
+                        <td>
+                            {{ foo.cantidadHorasT }}
+                        </td>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <br/>
+                <h3 class="text-center">Este estudiante no tiene asignaturas vencidas</h3>
+            {% endif %}
+        </div>
+    </div>
+</div>

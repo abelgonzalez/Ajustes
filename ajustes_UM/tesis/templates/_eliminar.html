@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block tituloSitio %} Plan de estudio {% endblock %}{
+{% block breadcrumbs %}
+    {% comment %}  <li><a href="{% url 'planEstudio:plan_estudio_listar' %}">Plan de Estudio</a></li>
+    <li class="active"><a href={{ object.get_absolute_url}}>Eliminar {{ object.nombre }}</a></li>{% endcomment %}
+{% endblock %}
+{% block body_container_nombre %}
+    ¿Dónde estoy?
+{% endblock %}
+{% block body_container_descripcion %}{% endblock %}
+
+{% block body_container %}
+    <div class="control-group">
+        <label class="control-label">¿Está seguro?</label>
+
+        <div class="controls">
+            <span class="help-inline">
+                    {{ object.nombre }}
+            </span>
+        </div>
+
+        <form action="
+        {% block eliminar_url %}
+        {# {% url "contacts-delete" pk=contact.id %}#}
+        {% endblock %}" method="POST"> {% csrf_token %}
+            <div class="text-center">
+                <input class="icon-remove primary danger icon-remove" type="submit" value="Si, eliminar"/>
+            </div>
+        </form>
+        <div class="text-center">
+            <button class="button primary">
+                <i class="icon-arrow-left-5"></i>
+                <a class="history-back" href="
+                        {% block cancelar_url %}
+
+                        {% endblock %}">No, cancelar</a>
+            </button>
+        </div>
+    </div>
+{% endblock %}

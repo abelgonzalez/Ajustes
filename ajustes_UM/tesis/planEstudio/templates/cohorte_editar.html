@@ -1,0 +1,17 @@
+{% extends '_editar.html' %}
+{% block breadcrumbs %}
+    <li><a href="{% url 'planEstudio:plan_estudio_listar' %}">Plan de Estudio</a></li>
+    <li><a href="{% url 'planEstudio:plan_estudio_detalle' plan.pk %}">{{ plan.nombre }}</a></li>
+    <li>
+        <a href="{% url 'planEstudio:cohorte_detalle' object.pk %}">{{ object.carreraTipoCursoId.carreraId }} {{ object.carreraTipoCursoId.tipoCursoId.siglas }} {{ object.cursoId }}</a>
+    </li>
+    <li class="active"><a href="{% url 'planEstudio:cohorte_editar' object.pk %}"> Editar</a></li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Plan de estudio
+{% endblock %}
+
+{% block cancelar_url %}
+    {% url 'planEstudio:plan_estudio_detalle' plan.pk %}
+{% endblock %}

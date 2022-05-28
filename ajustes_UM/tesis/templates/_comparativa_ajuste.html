@@ -1,0 +1,149 @@
+<div class="row ">
+    <div class="span6">
+        <blockquote>
+            <p class="subheader">
+                {{ cohorteprev.carreraTipoCursoId.carreraId.nombre }} {{ cohorteprev.carreraTipoCursoId.tipoCursoId.siglas }}
+            </p>
+
+            <p>
+                <a>Plan de estudio</a>
+                <small>{{ cohorteprev.planEstudioId }}</small>
+            </p>
+            <p>
+                <a>Curso</a>
+                <small>{{ cohorteprev.cursoId }}</small>
+            </p>
+            <a>Universidad</a>
+            <small>{{ cohorteprev.carreraTipoCursoId.universidadId.nombre }}</small>
+        </blockquote>
+        {% if lista_cp %}
+            {% for  a in lista_cp %}
+                {% ifchanged a.anhoSemestreId %}
+                    {% ifchanged a.anhoSemestreId.anhoId.nombre %}
+                        <p></p>
+                        <h2 class="text-center"> *** {{ a.anhoSemestreId.anhoId.nombre }} año ***</h2>
+                    {% endifchanged %}
+                    <div class="listview-outlook" data-role="listview">
+                        <div class="list-group">
+                            <a href="" class="group-title">
+                                <h5 class="text-center">{{ a.anhoSemestreId.semestreId }}</h5></a>
+
+                            <div style="display: block;">
+                                <a class="list marked" onclick="VerAsignaturaCohorte({{ a.pk }})">
+                                    <div class="list-content">
+                                        <span class="list-title"> {{ a.asignaturaId }}</span>
+                                        {% for c in asig_opt_elec1 %}
+                                            {% if a.pk == c.asignaturaCohorteId_id %}
+                                                <span class="list-remark ">{{ c.asignaturaId }}</span>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="listview-outlook" data-role="listview">
+                        <div style="display: block;">
+                            <a class="list marked" onclick="VerAsignaturaCohorte({{ a.pk }})">
+                                <div class="list-content">
+                                    <span class="list-title"> {{ a.asignaturaId }}</span>
+                                    {% for c in asig_opt_elec1 %}
+                                        {% if a.pk == c.asignaturaCohorteId_id %}
+                                            <span class="list-remark ">{{ c.asignaturaId }}</span>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                {% endifchanged %}
+            {% endfor %}
+        {% else %}
+            <br/>
+            <h3 class="text-center">Este cohorte no tiene asignaturas.</h3>
+            <div class="text-center">
+                <button class="command-button primary">
+                    <i class="icon-share-2 on-left"></i>
+                    <a href="{% url 'planEstudio:asignaturacohorte_nuevo' cohorteprev.pk %}">Agregar asignaturas
+                        a
+                        cohorte</a>
+                </button>
+            </div>
+        {% endif %}
+
+    </div>
+    <div class="span6">
+        <blockquote>
+            <p class="subheader">
+                {{ cohorteact.carreraTipoCursoId.carreraId.nombre }} {{ cohorteact.carreraTipoCursoId.tipoCursoId.siglas }}
+            </p>
+
+            <p>
+                <a>Plan de estudio</a>
+                <small>{{ cohorteact.planEstudioId }}</small>
+            </p>
+            <p>
+                <a>Curso</a>
+                <small>{{ cohorteact.cursoId }}</small>
+            </p>
+            <a>Universidad</a>
+            <small>{{ cohorteact.carreraTipoCursoId.universidadId.nombre }}</small>
+        </blockquote>
+        {% if lista_ca %}
+            {% for  a in lista_ca %}
+                {% ifchanged a.anhoSemestreId %}
+                    {% ifchanged a.anhoSemestreId.anhoId.nombre %}
+                        <p></p>
+                        <h2 class="text-center"> *** {{ a.anhoSemestreId.anhoId.nombre }} año ***</h2>
+                    {% endifchanged %}
+                    <div class="listview-outlook" data-role="listview">
+                        <div class="list-group">
+                            <a class="group-title">
+                                <h5 class="text-center">{{ a.anhoSemestreId.semestreId }}</h5></a>
+
+                            <div style="display: block;">
+                                <a class="list marked" onclick="VerAsignaturaCohorte({{ a.pk }})">
+                                    <div class="list-content">
+                                        <span class="list-title"> {{ a.asignaturaId }}</span>
+                                        {% for c in asig_opt_elec2 %}
+                                            {% if a.pk == c.asignaturaCohorteId_id %}
+                                                <span class="list-remark ">{{ c.asignaturaId }}</span>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="listview-outlook" data-role="listview">
+                        <div style="display: block;">
+                            <a class="list marked" onclick="VerAsignaturaCohorte({{ a.pk }})">
+                                <div class="list-content">
+                                    <span class="list-title"> {{ a.asignaturaId }}</span>
+                                    {% for c in asig_opt_elec2 %}
+                                        {% if a.pk == c.asignaturaCohorteId_id %}
+                                            <span class="list-remark ">{{ c.asignaturaId }}</span>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                {% endifchanged %}
+            {% endfor %}
+        {% else %}
+            <br/>
+            <h3 class="text-center">Este cohorte no tiene asignaturas.</h3>
+            <div class="text-center">
+                <button class="command-button primary">
+                    <i class="icon-share-2 on-left"></i>
+                    <a href="{% url 'planEstudio:asignaturacohorte_nuevo' cohorteact.pk %}">Agregar asignaturas
+                        a cohorte</a>
+                </button>
+            </div>
+        {% endif %}
+    </div>
+</div>

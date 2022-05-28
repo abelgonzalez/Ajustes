@@ -1,0 +1,47 @@
+{% extends '_listar.html' %}
+{% block breadcrumbs %}
+    <li class="active"><a href="{% url 'planEstudio:asignaturacohorte_listar' %}">Asignatura Cohorte</a></li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Asignatura Cohorte
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block boton_nuevo_url %}
+    {% url 'planEstudio:asignaturacohorte_nuevo' 1 %}
+{% endblock %}
+
+{% block buscar_url %}
+    {% url 'planEstudio:asignaturacohorte_busqueda' %}
+{% endblock %}
+
+{% block th_head %}
+    <th>Asignatura</th>
+    <th>Cohorte</th>
+    <th>Detalles</th>
+{% endblock %}
+
+{% block td_for %}
+    <td>{{ field.asignaturaId }}</td>
+    <td>{{ field.cohorteId }}</td>
+{% endblock %}
+
+{% block boton_editar_url %}
+    {% url 'planEstudio:asignaturacohorte_editar'  field.pk %}
+{% endblock %}
+
+{% block boton_eliminar_url %}
+    {% url 'planEstudio:asignaturacohorte_eliminar'  field.pk %}
+{% endblock %}
+
+{% block boton_detalle_url %}
+    {% url 'planEstudio:asignaturacohorte_detalle'  field.pk %}
+{% endblock %}
+
+{% block th_foot %}
+    <th>Asignatura</th>
+    <th>Cohorte</th>
+    <th>Detalles</th>
+{% endblock %}

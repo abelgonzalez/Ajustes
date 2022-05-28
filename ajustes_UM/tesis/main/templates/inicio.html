@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% block breadcrumbs %}
+{% endblock %}
+
+{% block body_container_nombre %}
+    Página principal
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block body_container %}
+    <div class="row">
+        <div class="span6">
+            <h1> Ajustes
+                <small class="on-right">Universidad de Matanzas</small>
+            </h1>
+        </div>
+        <div class="span6">
+            <blockquote>
+                <p> Esta aplicación web permite organizar y sistematizar el proceso de ajuste de plan de
+                    estudio en la Universidad de Matanzas.</p>
+                <small>
+                    Si tiene alguna duda o sugerencia, contacte con el <a
+                        href="mailto:abel.gonzalez@infonet.umcc.cu">administrador</a>
+                </small>
+            </blockquote>
+        </div>
+    </div>
+    {% if user.is_authenticated %}
+        <div class="row">
+            <fieldset>
+                <legend></legend>
+                <div class="span6">
+                    <fieldset>
+                        <legend><h3>Expedientes</h3></legend>
+                        <a href="{% url 'ajustes:aprobacionexpediente_aprobado_listar' %}">
+                            <div class="tile bg-darkBlue">
+                                <div class="tile-content icon">
+                                    <i class="icon-checkmark"></i>
+                                </div>
+                                <div class="brand">
+                                    <span class="label fg-white">Aprobados</span>
+                                    <span class="badge bg-orange">{{ request.session.expedientes_aprobados_tile }}</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="{% url 'ajustes:aprobacionexpediente_pendiente_listar' %}">
+                            <div class="tile bg-amber">
+                                <div class="tile-content icon">
+                                    <i class="icon-loading"></i>
+                                </div>
+                                <div class="brand">
+                                    <span class="label fg-white">Pendientes</span>
+                                    <span class="badge bg-orange">{{ request.session.expedientes_pendientes_tile }}</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="{% url 'ajustes:aprobacionexpediente_devuelto_listar' %}">
+                            <div class="tile bg-darkRed">
+                                <div class="tile-content icon">
+                                    <i class="icon-blocked"></i>
+                                </div>
+                                <div class="brand">
+                                    <span class="label fg-white">Devueltos</span>
+                                    <span class="badge bg-orange">{{ request.session.expedientes_devueltos_tile }}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </fieldset>
+                    <br/>
+
+                    <fieldset>
+                        <legend><h3>Ajustes</h3></legend>
+                        <a href="{% url 'ajustes:aprobacionajuste_aprobado_listar' %}">
+                            <div class="tile bg-darkBlue">
+                                <div class="tile-content icon">
+                                    <i class="icon-checkmark"></i>
+                                </div>
+                                <div class="brand">
+                                    <span class="label fg-white">Aprobados</span>
+                                    <span class="badge bg-orange">{{ request.session.ajustes_aprobados_tile }}</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="{% url 'ajustes:aprobacionajuste_pendiente_listar' %}">
+                            <div class="tile bg-amber">
+                                <div class="tile-content icon">
+                                    <i class="icon-loading"></i>
+                                </div>
+                                <div class="brand">
+                                    <span class="label fg-white">Pendientes</span>
+                                    <span class="badge bg-orange">{{ request.session.ajustes_pendientes_tile }}</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="{% url 'ajustes:aprobacionajuste_devuelto_listar' %}">
+                            <div class="tile bg-darkRed">
+                                <div class="tile-content icon">
+                                    <i class="icon-blocked"></i>
+                                </div>
+                                <div class="brand">
+                                    <span class="label fg-white">Devueltos</span>
+                                    <span class="badge bg-orange">{{ request.session.ajustes_devueltos_tile }}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </fieldset>
+                </div>
+
+                <div class="span6">
+                    <fieldset>
+                        <legend><h3>Mis acciones recientes</h3></legend>
+                        {% if registro %}
+                            <table class="table table-striped table-bordered table-advance table-hover" id="sample_1"
+                                   aria-describedby="sample_1_info">
+                                <thead>
+                                <tr role="row">
+                                    <th> Acción</th>
+                                    <th> Objeto</th>
+                                </tr>
+                                </thead>
+                                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                {% for field in registro %}
+                                    <tr>
+                                        <td class="hidden-480">
+                                            {% if field.action_flag == 1 %}
+                                                <i class="icon-plus-2"></i>
+                                            {% elif  field.action_flag == 2 %}
+                                                <i class="icon-pencil"></i>
+                                            {% elif  field.action_flag == 3 %}
+                                                <i class="icon-cancel-2"></i>
+                                            {% endif %}
+                                        </td>
+                                        <td class="hidden-480">{{ field.object_repr }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+                        {% else %}
+                            <p>No hay registros para mostrar.</p>
+                        {% endif %}
+                    </fieldset>
+                </div>
+            </fieldset>
+        </div>
+    {% endif %}
+{% endblock %}

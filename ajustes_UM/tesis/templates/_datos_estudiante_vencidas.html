@@ -1,0 +1,87 @@
+<div class="accordion" data-role="accordion" data-closeany="true">
+    <div class="accordion-frame">
+        <a class="active heading" href="#"><h2 class="text-center">Asignaturas vencidas</h2></a>
+
+        <div style="display: none;" class="content clearfix">
+            <span class="element-divider"></span>
+            {% if asigvenc %}
+                <table aria-describedby="dataTables-1_info"
+                       class="table striped hovered dataTable"
+                       id="dataTables-1">
+                    <thead>
+                    <tr role="row">
+                        <th>Asignatura</th>
+                        <th>Año</th>
+                        <th>Semestre</th>
+                        <th>Cantidad de horas totales</th>
+                        <th>Carrera</th>
+                    </tr>
+                    </thead>
+                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                    {% for foo in asigvenc %}
+                        <tr class="odd gradeX text-center">
+                        <td>  {{ foo.asignaturaCohorteId.asignaturaId }} </td>
+                        <td>  {{ foo.asignaturaCohorteId.anhoSemestreId.anhoId.nombre }} </td>
+                        <td>  {{ foo.asignaturaCohorteId.anhoSemestreId.semestreId }} </td>
+                        <td>  {{ foo.asignaturaCohorteId.cantidadHorasT }} </td>
+                        <td>{{ foo.carreraEstudianteId.cohorteId.carreraTipoCursoId.carreraId }} {{ foo.carreraEstudianteId.cohorteId.carreraTipoCursoId.universidadId.siglas }}</td>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <br/>
+                <h3 class="text-center">Este estudiante no tiene asignaturas vencidas</h3>
+            {% endif %}
+
+        </div>
+    </div>
+    <div class="accordion-frame">
+        <a class="active heading" href="#"><h2 class="text-center">Ajustes realizados</h2></a>
+
+        <div style="display: none;" class="content clearfix">
+            <span class="element-divider"></span>
+            {% if object_list %}
+                <table style="width: 1038px;" aria-describedby="dataTables-1_info"
+                       class="table striped hovered dataTable"
+                       id="dataTables-1">
+                    <thead>
+                    <tr role="row">
+                        <th>Carrera de procedencia</th>
+                        <th>Motivo de ajuste</th>
+                        <th>Carrera ajustada</th>
+                        <th>Curso del ajuste</th>
+                        <th>Año ajustado</th>
+                        <th>Ver</th>
+                    </tr>
+                    </thead>
+                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                    {% for foo in object_list %}
+                        <tr class="odd gradeX text-center">
+                        <td>
+                            <a>{{ foo.ajusteEstudianteId.carreraEstudianteId.cohorteId }}</a>
+                        </td>
+                        <td>{{ foo.ajusteEstudianteId.motivoAjusteId }}</td>
+                        <td>
+                            <a>{{ foo.ajusteEstudianteId.cohortePropuestoId }}</a>
+                        </td>
+                        <td>{{ foo.ajusteEstudianteId.cursoAjusteId }}</td>
+                        {% if  foo.ajusteEstudianteId.anhoSemestreAjustadoId %}
+                            <td>{{ foo.ajusteEstudianteId.anhoSemestreAjustadoId }}</td>
+                        {% else %}
+                            <td><p class="text-muted">Sin especificar</p></td>
+                        {% endif %}
+                        <td>
+                            <button class="button warning"><i class="icon-glasses-2"></i> <a href="
+                             {% url 'ajustes:ajusteestudiante_detalle' foo.ajusteEstudianteId.pk %}">Ver</a>
+                            </button>
+                        </td>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <br/>
+                <h3 class="text-center">A este estudiante aún no se le ha realizado ningún ajuste a plan.</h3>
+            {% endif %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+{% extends '_nuevo.html' %}
+{% block breadcrumbs %}
+    {% if duplicar %}
+        <li><a href="{% url 'planEstudio:plan_estudio_listar' %}">Plan de Estudio</a></li>
+        <li class="active"><a href="{% url 'planEstudio:cohorte_duplicar' %}">Duplicar cohortes</a>
+        <li class="active"><a
+                href="{% url 'planEstudio:cohorte_duplicar_resultados' cohorteId.pk %}">Cohorte base
+            <strong>{{ cohorteId.carreraTipoCursoId.carreraId.nombre }} {{ cohorteId.carreraTipoCursoId.tipoCursoId.siglas }} {{ cohorteId.planEstudioId }} {{ cohorteId.cursoId }} {{ cohorteId.carreraTipoCursoId.universidadId.siglas }}</strong></a>
+        </li>
+    {% else %}
+        <li><a href="{% url 'planEstudio:plan_estudio_listar' %}">Plan de Estudio</a></li>
+        <li><a href="{% url 'planEstudio:plan_estudio_detalle' plan.pk %}">{{ plan.nombre }}</a></li>
+        <li><a href="{% url 'planEstudio:cohorte_nuevo' plan.pk %}">Nuevo cohorte</a></li>
+    {% endif %}
+{% endblock %}
+
+{% block body_container_nombre %}
+    {% if duplicar %}
+        Especifique los datos del nuevo cohorte
+    {% else %}
+        Cohorte
+    {% endif %}
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block cancelar_url %}
+    {% url 'planEstudio:plan_estudio_detalle' plan.pk %}
+{% endblock %}

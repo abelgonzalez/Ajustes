@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="text-center">
+        <div><strong>Año y semestre que comienza:  </strong>
+            <select id="id_anhoSemestreId" name="anhoSemestre">
+                {% for a in lista_anho_semestre %}
+                    <option value="{{ a.pk }}"
+                            {% if a.pk == ubicacion_selected %}
+                                {{ 'selected' }}
+                            {% endif %}
+                            >{{ a.anhoId.nombre }} año - {{ a.semestreId.nombre }} semestre
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>

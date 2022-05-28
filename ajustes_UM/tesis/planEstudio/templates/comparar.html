@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% block breadcrumbs %}
+    <li><a href="{% url 'planEstudio:plan_estudio_listar' %}">Plan de Estudio</a></li>
+    <li class="active"><a href="{% url 'planEstudio:comparar' %}">Comparar asignaturas de cohortes</a>
+    </li>
+{% endblock %}
+
+{% block body_container_nombre %}
+    Comparar asignaturas de cohortes
+{% endblock %}
+
+{% block body_container_descripcion %}{% endblock %}
+
+{% block body_container %}
+    <div class="example1">
+        {% if not error %}
+            <div class="grid">
+                <div class="row ">
+                    <div class="span6">
+                        <div class="tab-control" data-role="tab-control">
+                            <ul class="tabs">
+                                <li class=""><a href="#_page_11">Carrera origen</a></li>
+                            </ul>
+                            <div class="frames">
+                                <div class="frame" id="_page_11">
+                                    <dl id="dl_universidad1" class="horizontal">
+                                        <dt><label for="universidad1"><strong>Universidad:</strong></label></dt>
+                                        <dd><select id="universidad1">
+                                            {% for a in universidad1 %}
+                                                <option value="{{ a.id }}">{{ a.nombre }}</option>
+                                            {% endfor %}
+                                        </select></dd>
+                                    </dl>
+                                    <dl id="dl_facultad1" class="horizontal" data-bind="visible: ShowFac">
+                                        <dt><label for="facultad1"><strong>Facultad:</strong></label></dt>
+                                        <dd>
+                                            <select id="facultad1">
+                                            </select>
+                                        </dd>
+                                    </dl>
+                                    <dl id="dl_carrera1" class="horizontal" data-bind="visible: ShowCarr">
+                                        <dt><label for="carrera1"><strong>Carrera:</strong></label></dt>
+                                        <dd>
+                                            <select id="carrera1">
+                                            </select>
+                                        </dd>
+                                    </dl>
+                                    <dl id="dl_tipo_curso1" class="horizontal ">
+                                        <dt><label for="tipo_curso1"><strong>Tipo de curso:</strong></label></dt>
+                                        <dd><select id="tipo_curso1">
+                                        </select></dd>
+                                    </dl>
+                                    <dl id="dl_plan_estudio1" class="horizontal">
+                                        <dt><label for="plan_estudio1"><strong>Plan de estudio:</strong></label></dt>
+                                        <dd><select id="plan_estudio1">
+
+                                        </select></dd>
+                                    </dl>
+                                    <dl id="dl_curso1" class="horizontal">
+                                        <dt><label for="curso1"><strong>Curso:</strong></label></dt>
+                                        <dd><select id="curso1">
+                                        </select></dd>
+                                    </dl>
+                                    <dl id="dl_cohorte1" class="horizontal no-visible">
+                                        <dt><label for="cohorte1"><strong>Cohorte:</strong></label></dt>
+                                        <dd><select id="cohorte1">
+                                        </select></dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span6">
+                        <div class="tab-control" data-role="tab-control">
+                            <ul class="tabs">
+                                <li class=""><a href="#_page_21">Carera destino</a></li>
+                            </ul>
+                            <div class="frames">
+                                <div class="frame" id="_page_21">
+                                    <dl id="dl_universidad2" class="horizontal">
+                                        <dt><label for="universidad2"><strong>Universidad:</strong></label></dt>
+                                        <dd><select id="universidad2">
+                                            {% for a in universidad2 %}
+                                                <option value="{{ a.id }}">{{ a.nombre }}</option>
+                                            {% endfor %}
+                                        </select></dd>
+                                    </dl>
+                                    <dl id="dl_facultad2" class="horizontal" data-bind="visible: ShowFac">
+                                        <dt><label for="facultad2"><strong>Facultad:</strong></label></dt>
+                                        <dd>
+                                            <select id="facultad2">
+                                            </select>
+                                        </dd>
+                                    </dl>
+                                    <dl id="dl_carrera2" class="horizontal" data-bind="visible: ShowCarr">
+                                        <dt><label for="carrera2"><strong>Carrera:</strong></label></dt>
+                                        <dd>
+                                            <select id="carrera2">
+                                            </select>
+                                        </dd>
+                                    </dl>
+                                    <dl id="dl_tipo_curso2" class="horizontal ">
+                                        <dt><label for="tipo_curso2"><strong>Tipo de curso:</strong></label></dt>
+                                        <dd><select id="tipo_curso2">
+                                        </select></dd>
+                                    </dl>
+                                    <dl id="dl_plan_estudio2" class="horizontal">
+                                        <dt><label for="plan_estudio2"><strong>Plan de estudio:</strong></label></dt>
+                                        <dd><select id="plan_estudio2">
+
+                                        </select></dd>
+                                    </dl>
+                                    <dl id="dl_curso2" class="horizontal">
+                                        <dt><label for="curso2"><strong>Curso:</strong></label></dt>
+                                        <dd><select id="curso2">
+                                        </select></dd>
+                                    </dl>
+                                    <dl id="dl_cohorte2" class="horizontal no-visible">
+                                        <dt><label for="cohorte2"><strong>Cohorte:</strong></label></dt>
+                                        <dd><select id="cohorte2">
+                                        </select></dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            </div>
+            <div class="row-fluid text-center">
+                <button class="command-button primary">
+                    <i class="icon-share-2 on-left"></i>
+                    <a id="comparar" href="{% url 'planEstudio:comparar_resultados' 1 2 %}">Comparar ahora</a>
+                </button>
+            </div>
+        {% else %}
+            <h3 class="text-center">Intenta comparar cohortes iguales.</h3>
+            <div class="text-center">
+                <button class="command-button primary">
+                    <i class="icon-share-2 on-left"></i>
+                    <a href="{% url 'planEstudio:comparar' %}">Comparar cohortes otra vez</a>
+                </button>
+            </div>
+        {% endif %}
+{% endblock %}
+
+{% block KO_Files %}
+    <script src="{{ STATIC_URL }}js/koFiles/comparar.js"></script>
+{% endblock %}
