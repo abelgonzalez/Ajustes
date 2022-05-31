@@ -113,10 +113,9 @@ Download and install:
 * Without Kinect: 
   - Open **Build** folder and execute "Skull Survival.exe"
 
----https://youtu.be/4jX4oDhjTtc
 ## 👉 Additional information
 * App Demo https://youtu.be/4jX4oDhjTtc
-* Techincal and User Manual is avaliable in [Doc](https://github.com/abelgonzalez/Ajustes/tree/main/Doc) folder (in spanish).
+* Technical and User's Manual is avaliable in [Doc](https://github.com/abelgonzalez/Ajustes/tree/main/Doc) folder (in spanish).
 * In case of sensitive bugs like security vulnerabilities, don't hesitate to get in touch with abelgodev@gmail.com directly instead of using issue tracker. I value your effort to improve the security and privacy of this project!
 
 ---
