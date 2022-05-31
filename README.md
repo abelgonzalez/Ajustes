@@ -4,7 +4,7 @@
 
 <h1 align="center">
   <img 
-    src="./Doc/game.jpg"
+    src="./Doc/home.jpg"
   />
   <p>Ajustes </p>
 </h1>
@@ -21,42 +21,83 @@
 
 ---
 ## 🧾 About
-**Skull Survival** is a game where I learned a lot. This project was a part of a final class project in which I used Microsoft Kinect and how to integrate it into a game environment. Also, I have created all Brief Game outline, the Software Engineer process, and the AI behind the game players.
+**Ajustes** is a Python-Django project to facilitate the process of adjusting curriculum in Universities. This project was part of my Engineeer thesis and was tested in Universidad de Matanzas's in Cuba. In this work, I could execute all software development cycle since scratch until the final deliver to user using agile methodology XP.
+
+---
+## 🧾 Screenshots
+**Home**
+<h1>
+  <img 
+    src="./Doc/home.jpg"
+  />
+</h1>
+
+**Cohort 1**
+<h1>
+  <img 
+    src="./Doc/cohort.jpg"
+  />
+</h1>
+
+**Cohort 2**
+<h1>
+  <img 
+    src="./Doc/cohort2.jpg"
+  />
+</h1>
+
+**Final result**
+<h1>
+  <img 
+    src="./Doc/finalResult.jpg"
+  />
+</h1>
+
+**Database**
+<h1>
+  <img 
+    src="./Doc/database.jpg"
+  />
+</h1>
+
+**Workflow**
+<h1>
+  <img 
+    src="./Doc/workflow.jpg"
+  />
+</h1>
+
 
 ---
 ## ✅ Main features
-**Player**
-- [x] Start game
-- [x] Walk (L,R)
-- [x] Jump
-- [x] Shoot enemy
-
-**Enemy**
-- [x] Walk
-- [x] Kill player
-- [x] Die
+**Career cordinator**
+- [x] CRUD Study Plan
+- [x] CRUD Cohort
+- [x] CRUD Topic
+- [x] CRUD Student history
 
 ---
 ## 🔧 Technology
 
-- [C#](https://www.w3schools.com/cs/index.php) 
-- [Unity](https://unity.com/) 💚
-- [Microsoft Kinect](http://www.kinect.com/)
+- [Python](https://www.python.org/) 
+- [Django](https://www.djangoproject.com/) 💚
+- [Apache](https://httpd.apache.org/)
+- [MySQL](https://www.mysql.com/)
 
 ---
 ## 👨‍💻 How to Setup
 
 ```bash
   # Clone the project
-  $ git clone https://github.com/abelgonzalez/Skull-Survival.git
+  $ git clone https://github.com/abelgonzalez/Ajustes.git
 ```
 ```bash
   # Enter directory
-  $ cd Skull-Survival
+  $ cd Ajustes
 ```
 
 ---
-## 😎 How to Play
+## 😎 How to Execute
 
 **Using Unity**
 Download and install:
