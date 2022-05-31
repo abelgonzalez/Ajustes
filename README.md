@@ -1,7 +1,3 @@
-# Ajustes
- Bachelor's degree thesis
-
-
 <h1 align="center">
   <img 
     src="./Doc/home.jpg"
@@ -117,17 +113,16 @@ Download and install:
 * Without Kinect: 
   - Open **Build** folder and execute "Skull Survival.exe"
 
----
+---https://youtu.be/4jX4oDhjTtc
 ## 👉 Additional information
-* Demo using Kinect https://youtu.be/oy5ZzX8Q-h4
-* Demo without Kinect https://youtu.be/g1KMN11Wa1o
-* Brief Game outline and User Manual is avaliable in [Doc](https://github.com/abelgonzalez/Skull-Survival/tree/main/Doc) folder (in portuguese).
+* App Demo https://youtu.be/4jX4oDhjTtc
+* Techincal and User Manual is avaliable in [Doc](https://github.com/abelgonzalez/Ajustes/tree/main/Doc) folder (in spanish).
 * In case of sensitive bugs like security vulnerabilities, don't hesitate to get in touch with abelgodev@gmail.com directly instead of using issue tracker. I value your effort to improve the security and privacy of this project!
 
 ---
 ## 📝 License
 
-This project is under the MIT license. See the file <a href="https://github.com/abelgonzalez/Skull-Survival/LICENSE">LICENCE</a> for more details.
+This project is under the MIT license. See the file <a href="https://github.com/abelgonzalez/Ajustes/LICENSE">LICENCE</a> for more details.
 
 ---
 ## 🧑‍💻 Autor
