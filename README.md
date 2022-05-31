@@ -93,16 +93,39 @@
 ```
 
 ---
-## 😎 How to Execute
 
-**Using Unity**
 Download and install:
 
- - [Unity 2018.1.0f2 Personal (64 bits)](https://unity3d.com/pt/unity/whats-new/unity-2018.1.0)
+ - [XAMPP for Windows 7.4.29](https://www.apachefriends.org/download.html)
+  
+ - [Python 3.7.7](https://www.python.org/downloads/release/python-377/)
 
- - [Kinect for Windows Software Development Kit (SDK) 2.0](https://www.microsoft.com/en-us/download/details.aspx?id=44561)
+ - [Django 3.2.13](https://www.djangoproject.com/download/3.2.13/tarball/) 
+   or
+  ```bash
+    # Clone the project
+    $ pip install Django==3.2.13
+  ```
 
-- Open Unity and load the project from **Codigo Fonte** folder.
+- [Visual Studio Code 1.67.2](https://code.visualstudio.com/Download)
+
+- [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
+
+- On your system you would do this by running this in your command prompt:
+```bash     
+    $ set "MOD_WSGI_APACHE_ROOTDIR=C:\xampp\apache"
+  ```
+-  [mod_wsgi 4.9.2] 
+   ```bash
+    # Install the last version
+    $ pip install mod_wsgi
+  ```
+
+
+## 😎 How to Execute
+
+
+- Open Unity and load the project from **ajustes_UM** folder.
 
 **Play game from exe**
 * With Kinect:
