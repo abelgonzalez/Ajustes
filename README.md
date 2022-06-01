@@ -92,8 +92,6 @@
   $ cd Ajustes
 ```
 
----
-
 Download and install:
 
  - [XAMPP for Windows 7.4.29](https://www.apachefriends.org/download.html)
@@ -106,7 +104,7 @@ Download and install:
     # Clone the project
     $ pip install Django==3.2.13
   ```
-
+  
 - [Visual Studio Code 1.67.2](https://code.visualstudio.com/Download)
 
 - [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
@@ -115,15 +113,47 @@ Download and install:
 ```bash     
     $ set "MOD_WSGI_APACHE_ROOTDIR=C:\xampp\apache"
   ```
--  [mod_wsgi 4.9.2] 
+-  Install mod_wsgi 4.9.2
    ```bash
     # Install the last version
     $ pip install mod_wsgi
-  ```
-  
-  
+   ```
   
 
+- You can add WSGIScriptAlias /mysite "C:/xampp/htdocs/wsgi/scripts/mysite.wsgi" in wsgi.conf to run http://YOURSITE/mysite, or you can just run http://YOURSITE/wsgi/mysite.wsgi
+Relaunch apache if necessary.
+  
+- At the end of file C:\xampp\apache\conf\httpd.conf , add the following:
+  AddHandler cgi-script .py
+  ScriptInterpreterSource Registry-Strict
+- Locate <IfModule dir_module> label and add **index.py** at right of **home.htm**
+- Save the httpd.conf changes
+  
+- Open MySQL and import the database file **ajustes_bd.sql** in the project source.
+  Database name: ajustes_UM
+  utf: utf8_spanish_ci
+  
+  
+ - Go to project root folder (**tesis**)
+  ```bash
+    # Run
+    $ python manage.py migrate
+    $ python manage.py makemigrations
+    $ python manage.py migrate
+  ```
+  
+ - Finally, in root folder (**tesis**) run:
+  ```bash
+    # Run
+    $ python manage.py runserver 8000
+  ```
+  
+
+
+
+
+  
+---
 ## 😎 How to Execute
 
 
