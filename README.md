@@ -2,7 +2,7 @@
   <img 
     src="./Doc/home.jpg"
   />
-  <p>Ajustes </p>
+  <p> 🧑‍🎓👩‍🎓 Ajustes </p>
 </h1>
 
 ---
