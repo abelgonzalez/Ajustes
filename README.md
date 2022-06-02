@@ -1,5 +1,5 @@
 <h1 align="center">
-   <p> 🧑‍🎓👩‍🎓 Ajustes </p>
+   <p> Ajustes 🧑‍🎓👩‍🎓 </p>
   <img 
     src="./Doc/home.jpg"
   /> 
