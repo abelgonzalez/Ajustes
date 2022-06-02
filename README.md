@@ -142,32 +142,19 @@ Relaunch apache if necessary.
     $ python manage.py makemigrations
     $ python manage.py migrate
   ```
-  
- - Finally, in root folder (**tesis**) run:
-  ```bash
-    # Run
-    $ python manage.py runserver 8000
-  ```
-  
-
-
-
+   
 
   
 ---
-## 😎 How to Execute
+## 😎 How to Run
 
+  
+ - In root folder (**tesis**) run:
+  ```bash
+    # Run
+    $ python manage.py runserver 
+  ```
 
-- Open Unity and load the project from **ajustes_UM** folder.
-
-**Play game from exe**
-* With Kinect:
-  - Download and install [Kinect for Windows Software Development Kit (SDK) 2.0](https://www.microsoft.com/en-us/download/details.aspx?id=44561)
-
-  - Open **Build** folder and execute "Skull Survival.exe"
-
-* Without Kinect: 
-  - Open **Build** folder and execute "Skull Survival.exe"
 
 ## 👉 Additional information
 * App Demo https://youtu.be/4jX4oDhjTtc
