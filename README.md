@@ -16,10 +16,10 @@
 
 ---
 ## 🧾 About
-**Ajustes** is a Python-Django project to facilitate the process of adjusting curriculum in Universities. This project was part of my Engineeer thesis and was tested in Universidad de Matanzas's in Cuba. In this work, I could execute all software development cycle since scratch until the final deliver to user using agile methodology XP.
+**Ajustes** is a Python-Django project to facilitate the process of adjusting curricula in Universities. This project was part of my Engineeer thesis and was tested at Universidad de Matanzas in Cuba. In this work, I could execute all software development cycles from scratch until the final delivery to the user using agile methodology XP.
 
 ---
-## 🧾 Screenshots
+## 📷 Screenshots
 **Home**
 <h1>
   <img 
@@ -62,14 +62,17 @@
   />
 </h1>
 
+---
+## 🕖 Versioning
+- Ajustes v1.0 (relased in 23/05/2015)
 
 ---
 ## ✅ Main features
-**Career cordinator**
+**Career coordinator**
 - [x] CRUD Study Plan
 - [x] CRUD Cohort
 - [x] CRUD Topic
-- [x] CRUD Student history
+- [x] CRUD Student historic
 
 ---
 ## 🔧 Technology
@@ -140,12 +143,11 @@ Relaunch apache if necessary.
     $ python manage.py makemigrations
     $ python manage.py migrate
   ```
-   
-
-  
+     
 ---
 ## 😎 How to Run
 
+ - Make sure the database was correctly loaded and MySQL is running.
   
  - In root folder (**tesis**) run:
   ```bash
@@ -153,11 +155,11 @@ Relaunch apache if necessary.
     $ python manage.py runserver 
   ```
 
-
+---
 ## 👉 Additional information
 * App Demo https://youtu.be/4jX4oDhjTtc
-* Technical and User's Manual is avaliable in [Doc](https://github.com/abelgonzalez/Ajustes/tree/main/Doc) folder (in spanish).
-* In case of sensitive bugs like security vulnerabilities, don't hesitate to get in touch with abelgodev@gmail.com directly instead of using issue tracker. I value your effort to improve the security and privacy of this project!
+* Technical and User's Manual is available in [Doc](https://github.com/abelgonzalez/Ajustes/tree/main/Doc) folder (in Spanish).
+* In case of sensitive bugs like security vulnerabilities, don't hesitate to contact me at abelgodev@gmail.com instead of using the issue tracker. I value your effort to improve the security and privacy of this project!
 
 ---
 ## 📝 License
