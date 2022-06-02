@@ -100,11 +100,11 @@ Download and install:
   
  - [Python 3.7.7](https://www.python.org/downloads/release/python-377/)
 
- - [Django 3.2.13](https://www.djangoproject.com/download/3.2.13/tarball/) 
+ - [Django 1.7](https://www.djangoproject.com/download/1.7/tarball/) 
    or
   ```bash
     # Clone the project
-    $ pip install Django==3.2.13
+    $ pip install Django==1.7
   ```
   
 - [Visual Studio Code 1.67.2](https://code.visualstudio.com/Download)
