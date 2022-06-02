@@ -1,0 +1,87 @@
+# -*- coding: utf-8 -*-
+from django.urls import reverse
+from django.db import models
+from django.contrib.auth.models import User
+from persona.nomencladores.nomencladorPersona import Ubicacion as Ubicacion
+from persona.nomencladores.nomencladorPersona import Nacionalidad as Nacionalidad
+from persona.nomencladores.nomencladorPersona import Sexo as Sexo
+from persona.nomencladores.nomencladorPersona import Etnia as Etnia
+from persona.nomencladores.nomencladorPersona import GradoCientifico as GradoCientifico
+from persona.nomencladores.nomencladorPersona import Pais as Pais
+from persona.nomencladores.nomencladorPersona import Provincia as Provincia
+from persona.nomencladores.nomencladorEstudiante import Universidad as Universidad
+from persona.nomencladores.nomencladorEstudiante import Facultad as Facultad
+from persona.nomencladores.nomencladorEstudiante import Carrera as Carrera
+from persona.nomencladores.nomencladorEstudiante import CarreraTipoDeCurso as CarreraTipoDeCurso
+from persona.nomencladores.nomencladorTrabajador import Departamento as Departamento
+from persona.nomencladores.nomencladorTrabajador import CategoriaDocente as CategoriaDocente
+from django.contrib.auth.models import User
+# Create your models here.
+
+class Estudiante(models.Model):
+    """
+Nomenclador de estudiante.
+Ejemplos: Abel González Mondéjar, Romualdo Arrechea Hernández.
+
+@cvar fechaIngESup: Fecha de Ingreso a la Educacion Superior.
+@cvar escalafon: Representa el número que ocupaba en el escalafon provincial.
+@cvar indiceAcad: Representa el indice académico del estudiante.
+@cvar userId: Representa la identificación del estudiante.
+@cvar active: Valor booleano que representa si un Estudiante está activa o no para ser usada en el sistema
+"""
+    # TODO
+    carneIdentidad = models.CharField(verbose_name='Carné de identidad', unique=True, max_length=11)
+    nombre = models.CharField('Nombre del estudiante', max_length=50)
+    apellidos = models.CharField('Apellidos', max_length=80)
+    direccion = models.TextField('Dirección', max_length=100)
+    ubicacionId = models.ForeignKey(Ubicacion, verbose_name='Ubicación')
+    nacionalidadId = models.ForeignKey(Nacionalidad, verbose_name='Nacionalidad', blank=True, null=True)
+    sexoId = models.ForeignKey(Sexo, verbose_name='Sexo', blank=True, null=True)
+    etniaId = models.ForeignKey(Etnia, verbose_name='Etnia', blank=True, null=True)
+    correoElectronico = models.EmailField('Correo electrónico', max_length=50, blank=True, null=True)
+    fechaIngESup = models.DateField('Fecha de ingreso a la Educación Superior', auto_now=True)
+    indiceAcademico = models.DecimalField('Indice académico', decimal_places=2, max_digits=5)
+    activo = models.BooleanField('Activo', default=True)
+    # image = models.ImageField(upload_to='upload', blank=True, max_length=150)
+
+
+    class Meta:
+        verbose_name = 'Estudiante'
+        verbose_name_plural = 'Estudiantes'
+        unique_together = ('carneIdentidad', 'nombre', 'apellidos')
+        default_permissions = ('add', 'change', 'delete', 'view')
+
+    def __str__(self):
+        return u"%s %s" % (self.nombre, self.apellidos)
+
+    def get_absolute_url(self):
+        return reverse('persona:estudiante_detalle', kwargs={'pk': self.pk})
+
+
+class Trabajador(models.Model):
+    """
+Nomenclador de Trabajadores.
+Ejemplos: Abel González Mondéjar pertenece al departamento de Informática, Romualdo Arrechea Hernández pertenece al departamento de Matemática.
+@cvar comentario: Representa la referente al trabajador.
+@cvar userId: Representa que el usuario es un trabajador.
+@cvar departamentoId: Representa la Relación 1:M con Departamento.
+@cvar categoriaDocenteId: Representa la Relación 1:M con CategoriaDocente.
+@cvar active: Valor booleano que representa si un Trabajador está activa o no para ser usado en el sistema.
+"""
+    # TODO
+    userId = models.OneToOneField(User, primary_key=True, verbose_name='Usuario')
+    facultadId = models.ForeignKey(Facultad, verbose_name='Facultad')
+    gradoCientifico = models.ForeignKey(GradoCientifico, verbose_name='Grado Científico', null=True, blank=True)
+    categoriaDocenteId = models.ForeignKey(CategoriaDocente, verbose_name='Categoria docente', null=True, blank=True)
+    departamentoId = models.ForeignKey(Departamento, verbose_name='Departamento', null=True, blank=True)
+    comentario = models.TextField('Comentarios', max_length=100, blank=True)
+    activo = models.BooleanField('Activo', default=True)
+
+    class Meta:
+        verbose_name = 'Trabajador'
+        verbose_name_plural = 'Trabajadores'
+        # unique_together = ('userId', 'gradoCientifico', 'categoriaDocenteId', 'departamentoId') no hace falta pq a través de userId ya se obtiene esta validación
+        default_permissions = ('add', 'change', 'delete', 'view')
+
+    def __str__(self):
+        return self.userId.get_full_name()
