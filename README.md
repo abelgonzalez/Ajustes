@@ -1,7 +1,7 @@
 <h1 align="center">
    <p> Ajustes 🧑‍🎓👩‍🎓 </p>
   <img 
-    src="./Doc/home.jpg"
+    src="./doc/home.jpg"
   /> 
 </h1>
 
