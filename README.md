@@ -9,7 +9,7 @@
 
 <h1 align="center">
   <img 
-    src="./Doc/demo.gif"
+    src="./doc/demo.gif"
   />
 </h1>
 
@@ -22,42 +22,42 @@
 **Home**
 <h1>
   <img 
-    src="./Doc/home.jpg"
+    src="./doc/home.jpg"
   />
 </h1>
 
 **Cohort 1**
 <h1>
   <img 
-    src="./Doc/cohort.jpg"
+    src="./doc/cohort.jpg"
   />
 </h1>
 
 **Cohort 2**
 <h1>
   <img 
-    src="./Doc/cohort2.jpg"
+    src="./doc/cohort2.jpg"
   />
 </h1>
 
 **Final result**
 <h1>
   <img 
-    src="./Doc/finalResult.jpg"
+    src="./doc/finalResult.jpg"
   />
 </h1>
 
 **Database**
 <h1>
   <img 
-    src="./Doc/database.jpg"
+    src="./doc/database.jpg"
   />
 </h1>
 
 **Workflow**
 <h1>
   <img 
-    src="./Doc/workflow.jpg"
+    src="./doc/workflow.jpg"
   />
 </h1>
 
@@ -157,7 +157,7 @@ Relaunch apache if necessary.
 ---
 ## 👉 Additional information
 * App Demo https://youtu.be/4jX4oDhjTtc
-* Technical and User's Manual is available in [Doc](https://github.com/abelgonzalez/Ajustes/tree/main/Doc) folder (in Spanish).
+* Technical and User's Manual is available in [Doc](https://github.com/abelgonzalez/Ajustes/tree/main/doc) folder (in Spanish).
 * In case of sensitive bugs like security vulnerabilities, don't hesitate to contact me at abelgodev@gmail.com instead of using the issue tracker. I value your effort to improve the security and privacy of this project!
 
 ---
