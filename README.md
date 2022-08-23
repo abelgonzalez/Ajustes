@@ -63,7 +63,7 @@
 
 ---
 ## 🕖 Versioning
-- Ajustes v1.0 (relased in 23/05/2015)
+- Ajustes v1.0 (relased in 23/05/2015).
 
 ---
 ## ✅ Main features
